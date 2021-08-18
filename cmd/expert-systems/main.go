@@ -61,7 +61,7 @@ func main() {
 	}()
 
 	// Run our server and print out starting message.
-	log.Println("Server has started on port 8080!")
+	log.Printf("Server has started on port %s!", getPort())
 	err := server.ListenAndServe()
 	if err != nil && err != http.ErrServerClosed {
 		log.Fatal(err)

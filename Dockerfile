@@ -34,11 +34,17 @@ COPY ./web .
 # Build our application.
 RUN yarn build
 
-# Use 'scratch' image for super-mini build.
-FROM scratch AS prod
+# Use 'alpine' image for mini build.
+# Not 'scratch', because sometimes we need to debug inside the container.
+# Heroku also does not support 'scratch' image.
+FROM alpine:latest AS prod
 
 # Set working directory for this stage.
 WORKDIR /production
+
+# Run container as a non-root user.
+RUN adduser -D nobody
+USER nobody
 
 # Copy our compiled executable from the last stage.
 COPY --from=api /backend-compile/expert-systems .
