@@ -1,0 +1,60 @@
+{
+  "name": "expert-systems",
+  "version": "0.0.0",
+  "description": "Web frontend for the Expert Systems",
+  "private": true,
+  "author": "Nicholas Dwiarto W. <nicholasdwiarto@yahoo.com> (https://www.nicholasdw.com)",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "format-check": "prettier --check --config ./.prettierrc ./**/*.{ts,tsx}",
+    "eslint-check": "eslint . --ext .ts,.tsx",
+    "type-check": "tsc --noEmit",
+    "lint": "yarn format-check && yarn type-check && yarn eslint-check"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lauslim12/expert-systems.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lauslim12/expert-systems/issues"
+  },
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "4.0.3",
+    "web-vitals": "^1.0.1"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "@types/jest": "^26.0.15",
+    "@types/node": "^12.0.0",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "prettier": "^2.3.2",
+    "typescript": "^4.1.2"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "proxy": "http://localhost:8080"
+}
