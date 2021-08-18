@@ -1,0 +1,64 @@
+name: Go and React
+
+on:
+  pull_request:
+    branches: [$default-branch]
+
+jobs:
+  go-ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up environment
+        run: |
+          GO_VERSION=`sed -n '3p' go.mod | awk '{print $2}'`
+          echo "GO_VERSION=${GO_VERSION}" >> $GITHUB_ENV
+
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: ${{ env.GO_VERSION }}
+
+      - name: Format Go application
+        run: make format
+
+      - name: Test Go application (unit-tests)
+        run: make test
+
+      - name: Build Go application
+        run: make build
+
+  react-ci:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./web
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: "16"
+          cache: "yarn"
+          cache-dependency-path: ./web/yarn.lock
+
+      - name: Install all dependencies
+        run: yarn
+
+      - name: Format React application
+        run: yarn format-check
+
+      - name: ESLint check React application
+        run: yarn eslint-check
+
+      - name: TypeScript check React application
+        run: yarn type-check
+
+      - name: Build React application
+        run: yarn build
