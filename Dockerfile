@@ -5,13 +5,13 @@ FROM golang:1.16.6 AS api
 WORKDIR /backend-compile
 
 # Copy dependency locks so we can cache.
-COPY go.mod go.sum .
+COPY go.mod go.sum ./
 
 # Get all of our dependencies.
 RUN go mod download
 
 # Copy all of our remaining application.
-COPY . .
+COPY . ./
 
 # Build our application.
 RUN CGO_ENABLED=0 GOOS=linux go build -o expert-systems ./cmd/expert-systems/main.go
@@ -23,13 +23,13 @@ FROM node:16.6.2 AS web
 WORKDIR /frontend-compile
 
 # Copy dependency locks.
-COPY ./web/package.json ./web/yarn.lock .
+COPY ./web/package.json ./web/yarn.lock ./
 
 # Get all of our dependencies.
 RUN yarn
 
 # Copy all of our remaining application.
-COPY ./web .
+COPY ./web ./
 
 # Build our application.
 RUN yarn build
@@ -43,12 +43,12 @@ FROM alpine:latest AS prod
 WORKDIR /production
 
 # Run container as a non-root user.
-RUN adduser -D nobody
-USER nobody
+RUN adduser -D nonroot-container-user
+USER nonroot-container-user
 
 # Copy our compiled executable from the last stage.
-COPY --from=api /backend-compile/expert-systems .
-COPY --from=web /frontend-compile/build ./web/build
+COPY --from=api /backend-compile/expert-systems ./
+COPY --from=web /frontend-compile/build ./web/build/
 
 # Run application and expose port 8080.
 EXPOSE 8080
