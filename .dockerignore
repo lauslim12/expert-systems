@@ -1,0 +1,5 @@
+.github
+.vscode
+scripts
+Makefile
+node_modules/
