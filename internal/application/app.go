@@ -16,6 +16,12 @@ import (
 	"github.com/go-playground/validator"
 )
 
+// Application constants for modes.
+const (
+	applicationModeDevelopment = "development"
+	applicationModeProduction  = "production"
+)
+
 // Person is an object that represents the request body.
 type Person struct {
 	Name    string `json:"name" validate:"required"`
@@ -142,7 +148,7 @@ func decodeJSONBody(w http.ResponseWriter, r *http.Request) (*Person, *FailureRe
 
 // Initialize application.
 // The 'pathToWebDirectory' is usually filled with './web/build' (the built React application location).
-func Configure(pathToWebDirectory string) http.Handler {
+func Configure(pathToWebDirectory, applicationMode string) http.Handler {
 	// Create a Chi instance.
 	r := chi.NewRouter()
 
@@ -167,6 +173,21 @@ func Configure(pathToWebDirectory string) http.Handler {
 		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.Header().Add("X-Expert-Systems", "Miyuki")
 			w.Header().Add("Server", "net/http")
+			next.ServeHTTP(w, r)
+		})
+	})
+
+	// Auto redirect to HTTPS in production (Heroku).
+	r.Use(func(next http.Handler) http.Handler {
+		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			if applicationMode == "production" {
+				if r.Header.Get("X-Forwarded-Proto") != "https" {
+					sslUrl := fmt.Sprintf("https://%s%s", r.Host, r.RequestURI)
+					http.Redirect(w, r, sslUrl, http.StatusPermanentRedirect)
+					return
+				}
+			}
+
 			next.ServeHTTP(w, r)
 		})
 	})

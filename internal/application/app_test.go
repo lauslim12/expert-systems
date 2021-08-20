@@ -14,11 +14,11 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-// This variable is intentionally kept to './web' and not './web/build' for the sake of testing.
+// Variable 'pathtoWebDirectory' is intentionally kept to './web' and not './web/build' for the sake of testing.
 const pathToWebDirectory = "./web"
 
 func TestSuccessGeneralHandler(t *testing.T) {
-	handler := Configure(pathToWebDirectory)
+	handler := Configure(pathToWebDirectory, applicationModeDevelopment)
 	testServer := httptest.NewServer(handler)
 	defer testServer.Close()
 
@@ -59,7 +59,7 @@ func TestSuccessGeneralHandler(t *testing.T) {
 }
 
 func TestFailureGeneralHandler(t *testing.T) {
-	handler := Configure(pathToWebDirectory)
+	handler := Configure(pathToWebDirectory, applicationModeDevelopment)
 	testServer := httptest.NewServer(handler)
 	defer testServer.Close()
 
@@ -108,7 +108,7 @@ func TestFailureGeneralHandler(t *testing.T) {
 
 func TestLimiterHandler(t *testing.T) {
 	limit := 250
-	handler := Configure(pathToWebDirectory)
+	handler := Configure(pathToWebDirectory, applicationModeDevelopment)
 	testServer := httptest.NewServer(handler)
 	defer testServer.Close()
 
@@ -152,7 +152,7 @@ func TestLimiterHandler(t *testing.T) {
 }
 
 func TestSuccessFunctionalHandler(t *testing.T) {
-	handler := Configure(pathToWebDirectory)
+	handler := Configure(pathToWebDirectory, applicationModeDevelopment)
 	testServer := httptest.NewServer(handler)
 	defer testServer.Close()
 
@@ -200,7 +200,7 @@ func TestSuccessFunctionalHandler(t *testing.T) {
 }
 
 func TestFailureFunctionalHandler(t *testing.T) {
-	handler := Configure(pathToWebDirectory)
+	handler := Configure(pathToWebDirectory, applicationModeDevelopment)
 	testServer := httptest.NewServer(handler)
 	defer testServer.Close()
 
@@ -319,6 +319,22 @@ func TestFailureFunctionalHandler(t *testing.T) {
 	}
 }
 
+func TestHTTPSRedirectOnProduction(t *testing.T) {
+	handler := Configure(pathToWebDirectory, applicationModeProduction)
+	testServer := httptest.NewServer(handler)
+	defer testServer.Close()
+
+	t.Run("test_https_redirect_on_production", func(t *testing.T) {
+		r := httptest.NewRequest("GET", "/api/v1", nil)
+		w := httptest.NewRecorder()
+		r.Header.Add("X-Forwarded-Proto", "http")
+		handler.ServeHTTP(w, r)
+
+		assert.Equal(t, http.StatusPermanentRedirect, w.Code)
+		assert.Equal(t, "https://example.com/api/v1", w.Result().Header.Get("Location"))
+	})
+}
+
 // Create a custom recorder so we can read from static files.
 // Reference: https://github.com/go-chi/chi/issues/583.
 type testRecorder struct {
@@ -334,7 +350,7 @@ func newRecorder() *testRecorder {
 }
 
 func TestRenderWeb(t *testing.T) {
-	handler := Configure(pathToWebDirectory)
+	handler := Configure(pathToWebDirectory, applicationModeDevelopment)
 	testServer := httptest.NewServer(handler)
 	defer testServer.Close()
 
