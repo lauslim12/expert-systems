@@ -27,7 +27,7 @@ type SuccessResponse struct {
 	Status  string  `json:"status"`
 	Code    int     `json:"code"`
 	Message string  `json:"message"`
-	Data    *Person `json:"person,omitempty"`
+	Data    *Person `json:"data,omitempty"`
 }
 
 func NewSuccessResponse(code int, message string, data *Person) *SuccessResponse {
@@ -69,17 +69,20 @@ func sendFailureResponse(w http.ResponseWriter, failureResponse *FailureResponse
 }
 
 // Utility function to decode a JSON request body.
-func decodeJSONBody(w http.ResponseWriter, r *http.Request, destination *Person) *FailureResponse {
+func decodeJSONBody(w http.ResponseWriter, r *http.Request) (*Person, *FailureResponse) {
+	// Initialize our variable to be returned - functional style.
+	parsedBody := &Person{}
+
 	// Check if Header is 'Content-Type: application/json'.
 	if r.Header.Get("Content-Type") != "application/json" {
-		return NewFailureResponse(http.StatusUnsupportedMediaType, "The 'Content-Type' header is not 'application/json'!")
+		return nil, NewFailureResponse(http.StatusUnsupportedMediaType, "The 'Content-Type' header is not 'application/json'!")
 	}
 
 	// Parse body, and set max bytes reader (1KB).
 	r.Body = http.MaxBytesReader(w, r.Body, 1024)
 	decoder := json.NewDecoder(r.Body)
 	decoder.DisallowUnknownFields()
-	if err := decoder.Decode(destination); err != nil {
+	if err := decoder.Decode(parsedBody); err != nil {
 		var syntaxError *json.SyntaxError
 		var unmarshalTypeError *json.UnmarshalTypeError
 
@@ -87,37 +90,37 @@ func decodeJSONBody(w http.ResponseWriter, r *http.Request, destination *Person)
 		// Handle syntax errors.
 		case errors.As(err, &syntaxError):
 			errorMessage := fmt.Sprintf("Request body contains a badly formatted JSON at position %d!", syntaxError.Offset)
-			return NewFailureResponse(http.StatusBadRequest, errorMessage)
+			return nil, NewFailureResponse(http.StatusBadRequest, errorMessage)
 
 		// Handle unexpected EOFs.
 		case errors.Is(err, io.ErrUnexpectedEOF):
 			errorMessage := "Request body contains a badly-formed JSON!"
-			return NewFailureResponse(http.StatusBadRequest, errorMessage)
+			return nil, NewFailureResponse(http.StatusBadRequest, errorMessage)
 
 		// Handle wrong data-type in request body.
 		case errors.As(err, &unmarshalTypeError):
 			errorMessage := fmt.Sprintf("Request body contains an invalid value for the %q field at position %d!", unmarshalTypeError.Field, unmarshalTypeError.Offset)
-			return NewFailureResponse(http.StatusBadRequest, errorMessage)
+			return nil, NewFailureResponse(http.StatusBadRequest, errorMessage)
 
 		// Handle unknown fields.
 		case strings.HasPrefix(err.Error(), "json: unknown field "):
 			fieldName := strings.TrimPrefix(err.Error(), "json: unknown field ")
 			errorMessage := fmt.Sprintf("Request body contains unknown field '%s'!", fieldName)
-			return NewFailureResponse(http.StatusBadRequest, errorMessage)
+			return nil, NewFailureResponse(http.StatusBadRequest, errorMessage)
 
 		// Handle empty request body.
 		case errors.Is(err, io.EOF):
 			errorMessage := "Request body must not be empty!"
-			return NewFailureResponse(http.StatusBadRequest, errorMessage)
+			return nil, NewFailureResponse(http.StatusBadRequest, errorMessage)
 
 		// Handle too large body.
 		case err.Error() == "http: request body too large":
 			errorMessage := "Request body must not be larger than 1KB!"
-			return NewFailureResponse(http.StatusRequestEntityTooLarge, errorMessage)
+			return nil, NewFailureResponse(http.StatusRequestEntityTooLarge, errorMessage)
 
 		// Handle other errors.
 		default:
-			return NewFailureResponse(http.StatusInternalServerError, err.Error())
+			return nil, NewFailureResponse(http.StatusInternalServerError, err.Error())
 		}
 	}
 	defer r.Body.Close()
@@ -125,16 +128,16 @@ func decodeJSONBody(w http.ResponseWriter, r *http.Request, destination *Person)
 	// Handle if client tries to send more than one JSON object.
 	if err := decoder.Decode(&struct{}{}); err != io.EOF {
 		errorMessage := "Request body must only contain a single JSON object!"
-		return NewFailureResponse(http.StatusBadRequest, errorMessage)
+		return nil, NewFailureResponse(http.StatusBadRequest, errorMessage)
 	}
 
 	// Validate input.
-	if err := validator.New().Struct(destination); err != nil {
-		return NewFailureResponse(http.StatusBadRequest, err.Error())
+	if err := validator.New().Struct(parsedBody); err != nil {
+		return nil, NewFailureResponse(http.StatusBadRequest, err.Error())
 	}
 
 	// If everything goes well, don't return anything.
-	return nil
+	return parsedBody, nil
 }
 
 // Initialize application.
@@ -181,8 +184,7 @@ func Configure(pathToWebDirectory string) http.Handler {
 
 		// Sample POST request.
 		r.Post("/", func(w http.ResponseWriter, r *http.Request) {
-			person := &Person{}
-			failureResponse := decodeJSONBody(w, r, person)
+			processedData, failureResponse := decodeJSONBody(w, r)
 			if failureResponse != nil {
 				sendFailureResponse(w, failureResponse)
 				return
@@ -192,7 +194,7 @@ func Configure(pathToWebDirectory string) http.Handler {
 			// End of Expert System function.
 
 			// Send back response.
-			res := NewSuccessResponse(http.StatusOK, "Successfully processed data in the Expert Systems!", person)
+			res := NewSuccessResponse(http.StatusOK, "Successfully processed data in the Expert Systems!", processedData)
 			sendSuccessResponse(w, res)
 		})
 

@@ -5,8 +5,15 @@ main() {
   API_URL=http://localhost:8080/api/v1
 
   # Tests for web frontend.
-  echo "Running e2e tests for the web frontend..."
+  echo "Running e2e tests for the web frontend (successful tests)..."
   curl -X GET $WEB_URL
+
+  # Give line breaks.
+  echo
+
+  # Expected to fail tests.
+  echo "Running e2e tests for the web frontend (failure tests)..."
+  curl -X GET $WEB_URL/404
 
   # Give line breaks.
   echo

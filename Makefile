@@ -4,7 +4,7 @@ start:
 
 .PHONY: build
 build:
-	go build -v ./cmd/expert-systems/main.go
+	go build -v -o expert-systems ./cmd/expert-systems/main.go
 
 .PHONY: format
 format:

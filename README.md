@@ -68,29 +68,39 @@ git clone git@github.com:lauslim12/expert-systems.git
 cd expert-systems
 ```
 
-- If running with Docker, do the following commands and after that, please open `localhost:8080` in your browser or run the provided integration tests with `make e2e`.
-
-```bash
-docker build . -t expert-systems:latest
-docker run -d -p 8080:8080 expert-systems:latest
-```
-
-- If running with manual way, run tests first if you want.
+- Run unit tests first if you want.
 
 ```bash
 make test
 ```
 
-- Build React application.
+- If running with Docker, do the following commands and after that, please open `localhost:8080` in your browser or run the provided integration tests with `make e2e`.
+
+```bash
+# Build and start
+docker build . -t expert-systems:latest
+docker run -d -p 8080:8080 expert-systems:latest
+
+# Remove image for cleanup
+docker image rm expert-systems:latest
+```
+
+- If you want to run this manually, please build React application first.
 
 ```bash
 cd web && yarn build
 ```
 
-- Start application. Don't forget to return to the main repository by using `cd ..`, assuming you are in `web` folder.
+- Build the Go application. Don't forget to return to the main repository by using `cd ..`, assuming you are in `web` folder.
 
 ```bash
-make start
+make build
+```
+
+- Start the application!
+
+```bash
+./expert-systems
 ```
 
 - Look at e2e or integration tests while the application is running. You might need to use another terminal.
