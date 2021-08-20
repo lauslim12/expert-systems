@@ -42,6 +42,10 @@ FROM alpine:latest AS prod
 # Set working directory for this stage.
 WORKDIR /production
 
+# Set environment variable for production.
+ARG GO_ENV
+ENV GO_ENV ${GO_ENV}
+
 # Run container as a non-root user.
 RUN adduser -D nonroot-container-user
 USER nonroot-container-user

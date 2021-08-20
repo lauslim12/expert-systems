@@ -26,10 +26,20 @@ func getPort() string {
 	return fmt.Sprintf(":%s", port)
 }
 
+// Get application mode from environment variable 'GO_ENV'. If it does not exist, use 'development'.
+func getMode() string {
+	mode := os.Getenv("GO_ENV")
+	if mode != "production" {
+		return "development"
+	}
+
+	return "production"
+}
+
 // Starting point, initialize server.
 func main() {
 	// HTTP server initialization.
-	server := &http.Server{Addr: getPort(), Handler: application.Configure(pathToWebDirectory)}
+	server := &http.Server{Addr: getPort(), Handler: application.Configure(pathToWebDirectory, getMode())}
 
 	// Prepare context for graceful shutdown.
 	serverCtx, serverStopCtx := context.WithCancel(context.Background())
@@ -61,7 +71,7 @@ func main() {
 	}()
 
 	// Run our server and print out starting message.
-	log.Printf("Server has started on port %s!", getPort())
+	log.Printf("Server has started on port %s with environment %s!", getPort(), getMode())
 	err := server.ListenAndServe()
 	if err != nil && err != http.ErrServerClosed {
 		log.Fatal(err)
