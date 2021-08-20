@@ -56,6 +56,8 @@ yarn lint
 
 There are two ways to run this application **for production**: first is to run with Docker, second is to run this manually. The recommended way is to run this with Docker.
 
+### Manual
+
 - Clone this repository.
 
 ```bash
@@ -72,17 +74,6 @@ cd expert-systems
 
 ```bash
 make test
-```
-
-- If running with Docker, do the following commands and after that, please open `localhost:8080` in your browser or run the provided integration tests with `make e2e`.
-
-```bash
-# Build and start
-docker build . -t expert-systems:latest
-docker run -d -p 8080:8080 expert-systems:latest
-
-# Remove image for cleanup
-docker image rm expert-systems:latest
 ```
 
 - If you want to run this manually, please build React application first.
@@ -107,4 +98,20 @@ make build
 
 ```bash
 make e2e
+```
+
+### Docker
+
+- If running with Docker, do the following commands and after that, please open `localhost:8080` in your browser or run the provided integration tests with `make e2e`.
+
+```bash
+# Build and start
+docker build . -t expert-systems:latest
+docker build . -t expert-systems:latest --build-arg GO_ENV=production # if you want HTTPS with 'X-Forwarded-Proto' header, some services like Heroku use this for HTTPS
+docker run --name expert-systems -d -p 8080:8080 expert-systems:latest
+
+# Remove image for cleanup
+docker stop expert-systems
+docker rm expert-systems
+docker image rm expert-systems:latest
 ```
