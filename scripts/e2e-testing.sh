@@ -41,6 +41,19 @@ main() {
   curl -X PUT -H "Content-Type: application/json" -d '{"name":"Sayu Ogiwara","address":"Hokkaido"}' $API_URL
   curl -X GET $API_URL/404
 
+  # Another line break.
+  echo
+
+  # Load testing.
+  echo "Running load tests for API backend..."
+  for i in {1..250}
+  do
+    curl -X GET $API_URL
+  done
+
+  # Line break.
+  echo
+
   # Done tests.
   echo "Finished testing!"
 }
