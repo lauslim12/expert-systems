@@ -10,7 +10,7 @@ Will be used for a research paper like my previous projects: [building managemen
 - [Go 1.16+](https://golang.org/)
 - [Node.js 16+](https://nodejs.org/en/)
 - [Yarn 1.22+](https://yarnpkg.com/)
-- Shell that supports `curl`, `make`, and `sh`. WSL / Ubuntu / OS X should be able to do this without much configuration.
+- Shell that supports `curl`, `make`, and `sh`. WSL / Ubuntu / OS X should be able to do this without much configuration (Bash version 3.0+).
 
 ## Installation (Development)
 
@@ -106,7 +106,7 @@ make e2e
 
 ```bash
 # Build and start
-docker build . -t expert-systems:latest
+docker build . -t expert-systems:latest # choose either this or the below one
 docker build . -t expert-systems:latest --build-arg GO_ENV=production # if you want HTTPS with 'X-Forwarded-Proto' header, some services like Heroku use this for HTTPS
 docker run --name expert-systems -d -p 8080:8080 expert-systems:latest
 
