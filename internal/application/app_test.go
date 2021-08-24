@@ -17,54 +17,21 @@ import (
 // Variable 'pathtoWebDirectory' is intentionally kept to './web' and not './web/build' for the sake of testing.
 const pathToWebDirectory = "./web"
 
-func TestSuccessGeneralHandler(t *testing.T) {
-	handler := Configure(pathToWebDirectory, applicationModeDevelopment)
-	testServer := httptest.NewServer(handler)
-	defer testServer.Close()
-
-	// Define test-cases.
-	tests := []struct {
-		name           string
-		method         string
-		route          string
-		expectedStatus int
-		expectedBody   *SuccessResponse
-	}{
-		{
-			name:           "test_health",
-			method:         http.MethodGet,
-			route:          "/api/v1",
-			expectedStatus: http.StatusOK,
-			expectedBody:   NewSuccessResponse(http.StatusOK, "Welcome to 'net/http' API!", nil),
-		},
+func structToJSON(object interface{}) string {
+	out, err := json.Marshal(object)
+	if err != nil {
+		log.Fatal(err.Error())
 	}
 
-	// Perform requests.
-	for _, test := range tests {
-		t.Run(test.name, func(t *testing.T) {
-			r := httptest.NewRequest(test.method, test.route, nil)
-			w := httptest.NewRecorder()
-			handler.ServeHTTP(w, r)
-
-			out, err := json.Marshal(test.expectedBody)
-			if err != nil {
-				log.Fatal(err.Error())
-			}
-
-			assert.NotNil(t, w.Body)
-			assert.Equal(t, test.expectedStatus, w.Code)
-			assert.JSONEq(t, string(out), w.Body.String())
-		})
-	}
+	return string(out)
 }
 
-func TestFailureGeneralHandler(t *testing.T) {
+func TestGeneralHandler(t *testing.T) {
 	handler := Configure(pathToWebDirectory, applicationModeDevelopment)
 	testServer := httptest.NewServer(handler)
 	defer testServer.Close()
 
-	// Define test-cases.
-	tests := []struct {
+	failureTests := []struct {
 		name           string
 		method         string
 		route          string
@@ -87,21 +54,43 @@ func TestFailureGeneralHandler(t *testing.T) {
 		},
 	}
 
-	// Perform requests.
-	for _, test := range tests {
-		t.Run(test.name, func(t *testing.T) {
-			r := httptest.NewRequest(test.method, test.route, nil)
+	successTests := []struct {
+		name           string
+		method         string
+		route          string
+		expectedStatus int
+		expectedBody   *SuccessResponse
+	}{
+		{
+			name:           "test_health",
+			method:         http.MethodGet,
+			route:          "/api/v1",
+			expectedStatus: http.StatusOK,
+			expectedBody:   NewSuccessResponse(http.StatusOK, "Welcome to 'net/http' API!", nil),
+		},
+	}
+
+	for _, tt := range failureTests {
+		t.Run(tt.name, func(t *testing.T) {
+			r := httptest.NewRequest(tt.method, tt.route, nil)
 			w := httptest.NewRecorder()
 			handler.ServeHTTP(w, r)
 
-			out, err := json.Marshal(test.expectedBody)
-			if err != nil {
-				log.Fatal(err.Error())
-			}
+			assert.NotNil(t, w.Body)
+			assert.Equal(t, tt.expectedStatus, w.Code)
+			assert.JSONEq(t, structToJSON(tt.expectedBody), w.Body.String())
+		})
+	}
+
+	for _, tt := range successTests {
+		t.Run(tt.name, func(t *testing.T) {
+			r := httptest.NewRequest(tt.method, tt.route, nil)
+			w := httptest.NewRecorder()
+			handler.ServeHTTP(w, r)
 
 			assert.NotNil(t, w.Body)
-			assert.Equal(t, test.expectedStatus, w.Code)
-			assert.JSONEq(t, string(out), w.Body.String())
+			assert.Equal(t, tt.expectedStatus, w.Code)
+			assert.JSONEq(t, structToJSON(tt.expectedBody), w.Body.String())
 		})
 	}
 }
@@ -137,75 +126,21 @@ func TestLimiterHandler(t *testing.T) {
 				handler.ServeHTTP(w, r)
 
 				if i == limit {
-					out, err := json.Marshal(test.expectedBody)
-					if err != nil {
-						log.Fatal(err.Error())
-					}
-
-					assert.Equal(t, test.expectedStatus, w.Code)
 					assert.NotNil(t, w.Body)
-					assert.JSONEq(t, string(out), w.Body.String())
+					assert.Equal(t, test.expectedStatus, w.Code)
+					assert.JSONEq(t, structToJSON(test.expectedBody), w.Body.String())
 				}
 			}
 		})
 	}
 }
 
-func TestSuccessFunctionalHandler(t *testing.T) {
+func TestFunctionalHandler(t *testing.T) {
 	handler := Configure(pathToWebDirectory, applicationModeDevelopment)
-	testServer := httptest.NewServer(handler)
-	defer testServer.Close()
+	ts := httptest.NewServer(handler)
+	defer ts.Close()
 
-	// Create sample datasets.
-	kaede := &Person{
-		Name:    "Kaede Kimura",
-		Address: "Tokyo",
-	}
-
-	// Define test cases.
-	tests := []struct {
-		name           string
-		method         string
-		input          string
-		expectedStatus int
-		expectedBody   *SuccessResponse
-	}{
-		{
-			name:           "test_success",
-			method:         http.MethodPost,
-			input:          `{"name":"Kaede Kimura","address":"Tokyo"}`,
-			expectedStatus: http.StatusOK,
-			expectedBody:   NewSuccessResponse(http.StatusOK, "Successfully processed data in the Expert Systems!", kaede),
-		},
-	}
-
-	// Perform requests.
-	for _, test := range tests {
-		t.Run(test.name, func(t *testing.T) {
-			r := httptest.NewRequest(test.method, "/api/v1", strings.NewReader(test.input))
-			r.Header.Set("Content-Type", "application/json")
-			w := httptest.NewRecorder()
-			handler.ServeHTTP(w, r)
-
-			out, err := json.Marshal(test.expectedBody)
-			if err != nil {
-				log.Fatal(err.Error())
-			}
-
-			assert.NotNil(t, w.Body)
-			assert.Equal(t, test.expectedStatus, w.Code)
-			assert.JSONEq(t, string(out), w.Body.String())
-		})
-	}
-}
-
-func TestFailureFunctionalHandler(t *testing.T) {
-	handler := Configure(pathToWebDirectory, applicationModeDevelopment)
-	testServer := httptest.NewServer(handler)
-	defer testServer.Close()
-
-	// Define test-cases.
-	tests := []struct {
+	failureTests := []struct {
 		name           string
 		method         string
 		input          string
@@ -295,26 +230,49 @@ func TestFailureFunctionalHandler(t *testing.T) {
 		},
 	}
 
-	// Perform requests.
-	for _, test := range tests {
-		t.Run(test.name, func(t *testing.T) {
-			r := httptest.NewRequest(test.method, "/api/v1", strings.NewReader(test.input))
+	successTests := []struct {
+		name           string
+		method         string
+		input          string
+		expectedStatus int
+		expectedBody   *SuccessResponse
+	}{
+		{
+			name:           "test_success",
+			method:         http.MethodPost,
+			input:          `{"name":"Kaede Kimura","address":"Tokyo"}`,
+			expectedStatus: http.StatusOK,
+			expectedBody:   NewSuccessResponse(http.StatusOK, "Successfully processed data in the Expert Systems!", &Person{"Kaede Kimura", "Tokyo"}),
+		},
+	}
+
+	for _, tt := range failureTests {
+		t.Run(tt.name, func(t *testing.T) {
+			r := httptest.NewRequest(tt.method, "/api/v1", strings.NewReader(tt.input))
 			w := httptest.NewRecorder()
 
-			if test.withHeader {
+			if tt.withHeader {
 				r.Header.Set("Content-Type", "application/json")
 			}
 
 			handler.ServeHTTP(w, r)
 
-			out, err := json.Marshal(test.expectedBody)
-			if err != nil {
-				log.Fatal(err.Error())
-			}
+			assert.NotNil(t, w.Body)
+			assert.Equal(t, tt.expectedStatus, w.Code)
+			assert.JSONEq(t, structToJSON(tt.expectedBody), w.Body.String())
+		})
+	}
+
+	for _, tt := range successTests {
+		t.Run(tt.name, func(t *testing.T) {
+			r := httptest.NewRequest(tt.method, "/api/v1", strings.NewReader(tt.input))
+			w := httptest.NewRecorder()
+			r.Header.Add("Content-Type", "application/json")
+			handler.ServeHTTP(w, r)
 
 			assert.NotNil(t, w.Body)
-			assert.Equal(t, test.expectedStatus, w.Code)
-			assert.JSONEq(t, string(out), w.Body.String())
+			assert.Equal(t, tt.expectedStatus, w.Code)
+			assert.JSONEq(t, structToJSON(tt.expectedBody), w.Body.String())
 		})
 	}
 }
