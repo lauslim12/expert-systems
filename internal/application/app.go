@@ -36,6 +36,7 @@ type SuccessResponse struct {
 	Data    *Person `json:"data,omitempty"`
 }
 
+// NewSuccessResponse will create an instance of 'SuccessResponse' with default values.
 func NewSuccessResponse(code int, message string, data *Person) *SuccessResponse {
 	return &SuccessResponse{
 		Status:  "success",
@@ -52,6 +53,7 @@ type FailureResponse struct {
 	Message string `json:"message"`
 }
 
+// NewFailureResponse will create an instance of 'FailureResponse' with default values.
 func NewFailureResponse(code int, message string) *FailureResponse {
 	return &FailureResponse{
 		Status:  "fail",
@@ -248,5 +250,6 @@ func Configure(pathToWebDirectory, applicationMode string) http.Handler {
 		}
 	})
 
+	// Returns our router instance.
 	return r
 }
