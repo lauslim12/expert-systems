@@ -12,7 +12,7 @@ format:
 
 .PHONY: test
 test:
-	go test -v -coverpkg ./internal/application ./internal/application
+	go test -v -cover ./... ./...
 
 .PHONY: e2e
 e2e:
