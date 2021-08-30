@@ -26,7 +26,7 @@ WORKDIR /frontend-compile
 COPY ./web/package.json ./web/yarn.lock ./
 
 # Get all of our dependencies.
-RUN yarn
+RUN yarn --frozen-lockfile
 
 # Copy all of our remaining application.
 COPY ./web ./

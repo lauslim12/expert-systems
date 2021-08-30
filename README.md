@@ -36,7 +36,7 @@ make start
 
 # terminal 2
 cd web
-yarn
+yarn --frozen-lockfile
 yarn start
 ```
 
@@ -79,7 +79,7 @@ make test
 - If you want to run this manually, please build React application first.
 
 ```bash
-cd web && yarn build
+cd web && yarn --frozen-lockfile && yarn build
 ```
 
 - Build the Go application. Don't forget to return to the main repository by using `cd ..`, assuming you are in `web` folder.
