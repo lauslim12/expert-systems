@@ -6,14 +6,14 @@ main() {
 
   # Tests for web frontend.
   echo "Running e2e tests for the web frontend (successful tests)..."
-  curl -X GET $WEB_URL
+  curl -X GET $WEB_URL; echo
 
   # Give line breaks.
   echo
 
   # Expected to fail tests.
   echo "Running e2e tests for the web frontend (failure tests)..."
-  curl -X GET $WEB_URL/404
+  curl -X GET $WEB_URL/404; echo
 
   # Give line breaks.
   echo
