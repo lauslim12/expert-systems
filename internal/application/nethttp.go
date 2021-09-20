@@ -9,6 +9,8 @@ import (
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/httprate"
+	"github.com/go-playground/validator/v10"
+	"github.com/lauslim12/asuka"
 )
 
 // Initialize application.
@@ -50,10 +52,16 @@ func Configure(pathToWebDirectory, applicationMode string) http.Handler {
 
 		// Sample POST request.
 		r.Post("/", func(w http.ResponseWriter, r *http.Request) {
-			processedData := &Person{}
-			failureResponse := decodeJSONBody(w, r, processedData)
-			if failureResponse != nil {
-				sendFailureResponse(w, failureResponse)
+			person := &Person{}
+			statusCode, err := asuka.Parse(w, r, person, asuka.DefaultConfig())
+			if err != nil {
+				sendFailureResponse(w, NewFailureResponse(statusCode, err.Error()))
+				return
+			}
+
+			// Validate fields.
+			if err := validator.New().Struct(person); err != nil {
+				sendFailureResponse(w, NewFailureResponse(http.StatusBadRequest, err.Error()))
 				return
 			}
 
@@ -61,7 +69,7 @@ func Configure(pathToWebDirectory, applicationMode string) http.Handler {
 			// End of Expert System function.
 
 			// Send back response.
-			res := NewSuccessResponse(http.StatusOK, "Successfully processed data in the Expert Systems!", processedData)
+			res := NewSuccessResponse(http.StatusOK, "Successfully processed data in the Expert Systems!", person)
 			sendSuccessResponse(w, res)
 		})
 
