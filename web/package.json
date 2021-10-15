@@ -9,7 +9,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "format-check": "prettier --check --config ./.prettierrc ./**/*.{ts,tsx}",
+    "format-check": "prettier --check ./**/*.{ts,tsx}",
     "eslint-check": "eslint . --ext .ts,.tsx",
     "type-check": "tsc --noEmit",
     "lint": "yarn format-check && yarn type-check && yarn eslint-check"
@@ -43,6 +43,10 @@
       "react-app",
       "react-app/jest"
     ]
+  },
+  "prettier": {
+    "singleQuote": true,
+    "printWidth": 100
   },
   "browserslist": {
     "production": [
