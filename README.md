@@ -7,7 +7,7 @@ Will be used for a research paper like my previous projects: [building managemen
 ## Requirements
 
 - [Docker](https://www.docker.com/) (if you want to containerize)
-- [Go 1.16+](https://golang.org/)
+- [Go 1.17+](https://golang.org/)
 - [Node.js 16+](https://nodejs.org/en/)
 - [Yarn 1.22+](https://yarnpkg.com/)
 - Shell that supports `curl`, `make`, and `sh`. WSL / Ubuntu / OS X should be able to do this without much configuration (Bash version 3.0+).
