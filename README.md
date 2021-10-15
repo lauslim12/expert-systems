@@ -1,6 +1,6 @@
 # Expert Systems
 
-Expert Systems Research with a touch of Software Engineering with Go and React.
+Expert Systems Research with a touch of Software Engineering with Go and React. Licensed under MIT License, and in progress to be submitted in an academic journal.
 
 Will be used for a research paper like my previous projects: [building management system](https://github.com/lauslim12/Asuna), and [NDFA methodology to build cereal vending machines (Bahasa Indonesia)](http://proceeding.unindra.ac.id/index.php/simponi/article/view/375).
 
@@ -115,3 +115,7 @@ docker stop expert-systems
 docker rm expert-systems
 docker image rm expert-systems:latest
 ```
+
+## License
+
+This application is open sourced under MIT License.
