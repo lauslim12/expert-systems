@@ -9,7 +9,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "format-check": "prettier --check --config ./.prettierrc ./**/*.{ts,tsx}",
+    "format-check": "prettier --check ./**/*.{ts,tsx}",
     "eslint-check": "eslint . --ext .ts,.tsx",
     "type-check": "tsc --noEmit",
     "lint": "yarn format-check && yarn type-check && yarn eslint-check"
@@ -25,24 +25,36 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
-    "web-vitals": "^1.0.1"
+    "web-vitals": "^2.1.2"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "@types/jest": "^26.0.15",
-    "@types/node": "^12.0.0",
-    "@types/react": "^17.0.0",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/user-event": "^13.4.1",
+    "@types/jest": "^27.0.2",
+    "@types/node": "^16.11.0",
+    "@types/react": "^17.0.30",
     "@types/react-dom": "^17.0.0",
-    "prettier": "^2.3.2",
-    "typescript": "^4.1.2"
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "prettier": "^2.4.1",
+    "typescript": "^4.4.4"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
-    ]
+    ],
+    "plugins": [
+      "simple-import-sort"
+    ],
+    "rules": {
+      "simple-import-sort/imports": "error",
+      "simple-import-sort/exports": "error"
+    }
+  },
+  "prettier": {
+    "singleQuote": true,
+    "printWidth": 100
   },
   "browserslist": {
     "production": [
