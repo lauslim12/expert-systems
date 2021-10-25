@@ -5,6 +5,7 @@ import (
 	"net/http"
 )
 
+// Adds custom headers to the application.
 func customHeaders(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Add("X-Expert-Systems", "Miyuki")
@@ -13,6 +14,7 @@ func customHeaders(next http.Handler) http.Handler {
 	})
 }
 
+// Auto redirect to HTTPS if possible.
 func httpsRedirect(applicationMode string) func(http.Handler) http.Handler {
 	return func(next http.Handler) http.Handler {
 		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
