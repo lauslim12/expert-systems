@@ -66,15 +66,11 @@ func Configure(pathToWebDirectory, applicationMode string) http.Handler {
 				return
 			}
 
-			// Perform inference with our Expert System.
-			exampleInferredData, err := inference.Infer()
-			if err != nil {
-				sendFailureResponse(w, NewFailureResponse(http.StatusInternalServerError, err.Error()))
-				return
-			}
+			// Perform inference with our Expert System based on the given input.
+			inferredData := inference.Infer(input)
 
 			// Send back response.
-			res := NewSuccessResponse(http.StatusOK, "Successfully processed data in the Expert System!", exampleInferredData)
+			res := NewSuccessResponse(http.StatusOK, "Successfully processed data in the Expert System!", inferredData)
 			sendSuccessResponse(w, res)
 		})
 
@@ -91,7 +87,7 @@ func Configure(pathToWebDirectory, applicationMode string) http.Handler {
 		})
 	})
 
-	// Fallback route, serve React app. Below works, but the tests return 404.
+	// Fallback route, serve React app.
 	r.Get("/*", func(w http.ResponseWriter, r *http.Request) {
 		fs := http.FileServer(http.Dir(pathToWebDirectory))
 
