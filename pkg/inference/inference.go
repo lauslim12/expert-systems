@@ -18,12 +18,15 @@ type Inferred struct {
 	Disease     Disease `json:"disease"`
 }
 
+// SymptomAndWeight is a struct representative of the members of 'symptoms' array in 'Input' struct.
+type SymptomAndWeight struct {
+	SymptomID string  `json:"symptomId"`
+	Weight    float64 `json:"weight"`
+}
+
 // Input is used as a representative of a user's input.
 type Input struct {
-	Symptoms []struct {
-		SymptomID string  `json:"symptomId"`
-		Weight    float64 `json:"weight"`
-	} `json:"symptoms"`
+	Symptoms []SymptomAndWeight `json:"symptoms"`
 }
 
 // Symptom is an object that represents the symptoms data in this library.
