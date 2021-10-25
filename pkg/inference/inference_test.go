@@ -1,10 +1,6 @@
 package inference
 
-import (
-	"testing"
-
-	"github.com/stretchr/testify/assert"
-)
+import "testing"
 
 func TestInfer(t *testing.T) {
 	tests := []struct {
@@ -93,8 +89,14 @@ func TestInfer(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			output := Infer(&tt.input)
 
-			assert.Equal(t, tt.expectedCertaintyFactor, output.Probability)
-			assert.Equal(t, tt.expectedVerdict, output.Verdict)
+			if tt.expectedCertaintyFactor != output.Probability {
+				t.Errorf("Expected and actual certainty factor values are different! Expected: %v. Got: %v", tt.expectedCertaintyFactor, output.Probability)
+			}
+
+			if tt.expectedVerdict != output.Verdict {
+				t.Errorf("Expected and actual verdict values are different! Expected: %v. Got: %v", tt.expectedVerdict, output.Verdict)
+			}
+
 		})
 	}
 }

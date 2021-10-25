@@ -1,7 +1,6 @@
 package application
 
 import (
-	"encoding/json"
 	"io"
 	"log"
 	"net/http"
@@ -10,21 +9,10 @@ import (
 	"path/filepath"
 	"strings"
 	"testing"
-
-	"github.com/stretchr/testify/assert"
 )
 
 // Variable 'pathtoWebDirectory' is intentionally kept to './web' and not './web/build' for the sake of testing.
 const pathToWebDirectory = "./web"
-
-func structToJSON(object interface{}) string {
-	out, err := json.Marshal(object)
-	if err != nil {
-		log.Fatal(err.Error())
-	}
-
-	return string(out)
-}
 
 func TestGeneralHandler(t *testing.T) {
 	handler := Configure(pathToWebDirectory, applicationModeDevelopment)
@@ -83,7 +71,9 @@ func TestGeneralHandler(t *testing.T) {
 			w := httptest.NewRecorder()
 			handler.ServeHTTP(w, r)
 
-			assert.Equal(t, tt.expectedStatus, w.Code)
+			if tt.expectedStatus != w.Code {
+				t.Errorf("Expected and actual status code values are different! Expected: %v. Got: %v", tt.expectedStatus, w.Code)
+			}
 		})
 	}
 
@@ -94,7 +84,9 @@ func TestGeneralHandler(t *testing.T) {
 			r.Header.Set("Content-Type", "application/json")
 			handler.ServeHTTP(w, r)
 
-			assert.Equal(t, tt.expectedStatus, w.Code)
+			if tt.expectedStatus != w.Code {
+				t.Errorf("Expected and actual status code values are different! Expected: %v. Got: %v", tt.expectedStatus, w.Code)
+			}
 		})
 	}
 }
@@ -130,7 +122,9 @@ func TestRenderWeb(t *testing.T) {
 		w := newRecorder()
 		handler.ServeHTTP(w, r)
 
-		assert.Equal(t, http.StatusOK, w.Code)
+		if http.StatusOK != w.Code {
+			t.Errorf("Expected and actual status code values are different! Expected: %v. Got: %v", http.StatusOK, w.Code)
+		}
 	})
 
 	t.Run("test_render_web_404", func(t *testing.T) {
@@ -138,6 +132,8 @@ func TestRenderWeb(t *testing.T) {
 		w := newRecorder()
 		handler.ServeHTTP(w, r)
 
-		assert.Equal(t, http.StatusNotFound, w.Code)
+		if http.StatusNotFound != w.Code {
+			t.Errorf("Expected and actual status code values are different! Expected: %v. Got: %v", http.StatusNotFound, w.Code)
+		}
 	})
 }
