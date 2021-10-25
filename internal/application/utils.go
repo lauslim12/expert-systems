@@ -11,12 +11,6 @@ const (
 	applicationModeProduction  = "production"
 )
 
-// Person is an object that represents the request body.
-type Person struct {
-	Name    string `json:"name" validate:"required"`
-	Address string `json:"address" validate:"required"`
-}
-
 // SuccessResponse is used to handle successful responses.
 type SuccessResponse struct {
 	Status  string      `json:"status"`
