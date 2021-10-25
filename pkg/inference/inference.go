@@ -44,7 +44,7 @@ func ForwardChaining(input *Input) bool {
 	numberOfPositives := 0
 
 	for _, symptom := range input.Symptoms {
-		if symptom.Weight == 0.0 {
+		if symptom.Weight > 0.0 {
 			numberOfPositives += 1
 		}
 	}
