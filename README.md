@@ -1,8 +1,8 @@
 # Expert Systems
 
-Expert Systems Research with a touch of Software Engineering with Go and React. Licensed under MIT License, and in progress to be submitted in an academic journal.
+Expert Systems Research (diagnosis of Tuberculosis with Forward Chaining and Certainty Factor) with a touch of Software Engineering with Go and React. Licensed under MIT License, and in progress to be submitted in an academic journal.
 
-Will be used for a research paper like my previous projects: [building management system](https://github.com/lauslim12/Asuna), and [NDFA methodology to build cereal vending machines (Bahasa Indonesia)](http://proceeding.unindra.ac.id/index.php/simponi/article/view/375).
+This research is still in progress and not completed yet.
 
 ## Requirements
 
@@ -119,3 +119,9 @@ docker image rm expert-systems:latest
 ## License
 
 This application is open sourced under MIT License.
+
+## References
+
+We would like to acknowledge these sources of helpful information for they have helped us during the research process.
+
+- [Victor Caelina for the TB Symptoms Dataset](https://www.kaggle.com/victorcaelina/tuberculosis-symptoms)
