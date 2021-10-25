@@ -11,6 +11,7 @@ import (
 	"github.com/go-chi/httprate"
 	"github.com/go-playground/validator/v10"
 	"github.com/lauslim12/asuka"
+	"github.com/lauslim12/expert-systems/pkg/inference"
 )
 
 // Initialize application.
@@ -52,24 +53,28 @@ func Configure(pathToWebDirectory, applicationMode string) http.Handler {
 
 		// Sample POST request.
 		r.Post("/", func(w http.ResponseWriter, r *http.Request) {
-			person := &Person{}
-			statusCode, err := asuka.Parse(w, r, person, asuka.DefaultConfig())
+			input := &inference.Input{}
+			statusCode, err := asuka.Parse(w, r, input, asuka.DefaultConfig())
 			if err != nil {
 				sendFailureResponse(w, NewFailureResponse(statusCode, err.Error()))
 				return
 			}
 
 			// Validate fields.
-			if err := validator.New().Struct(person); err != nil {
+			if err := validator.New().Struct(input); err != nil {
 				sendFailureResponse(w, NewFailureResponse(http.StatusBadRequest, err.Error()))
 				return
 			}
 
-			// Do Expert System function here.
-			// End of Expert System function.
+			// Perform inference with our Expert System.
+			exampleInferredData, err := inference.Infer()
+			if err != nil {
+				sendFailureResponse(w, NewFailureResponse(http.StatusInternalServerError, err.Error()))
+				return
+			}
 
 			// Send back response.
-			res := NewSuccessResponse(http.StatusOK, "Successfully processed data in the Expert Systems!", person)
+			res := NewSuccessResponse(http.StatusOK, "Successfully processed data in the Expert System!", exampleInferredData)
 			sendSuccessResponse(w, res)
 		})
 

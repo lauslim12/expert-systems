@@ -19,10 +19,10 @@ type Person struct {
 
 // SuccessResponse is used to handle successful responses.
 type SuccessResponse struct {
-	Status  string  `json:"status"`
-	Code    int     `json:"code"`
-	Message string  `json:"message"`
-	Data    *Person `json:"data,omitempty"`
+	Status  string      `json:"status"`
+	Code    int         `json:"code"`
+	Message string      `json:"message"`
+	Data    interface{} `json:"data"`
 }
 
 // FailureResponse is used to handle failed requests.
@@ -33,7 +33,7 @@ type FailureResponse struct {
 }
 
 // NewSuccessResponse will create an instance of 'SuccessResponse' with default values.
-func NewSuccessResponse(code int, message string, data *Person) *SuccessResponse {
+func NewSuccessResponse(code int, message string, data interface{}) *SuccessResponse {
 	return &SuccessResponse{
 		Status:  "success",
 		Code:    code,

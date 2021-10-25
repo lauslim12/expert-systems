@@ -75,13 +75,6 @@ func TestGeneralHandler(t *testing.T) {
 			route:          "/api/v1",
 			expectedStatus: http.StatusOK,
 		},
-		{
-			name:           "test_success",
-			method:         http.MethodPost,
-			input:          `{"name":"Kaede","address":"Tokyo"}`,
-			route:          "/api/v1",
-			expectedStatus: http.StatusOK,
-		},
 	}
 
 	for _, tt := range failureTests {
