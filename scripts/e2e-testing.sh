@@ -62,7 +62,7 @@ main() {
         }
       ]
     }' \
-  http://localhost:8080/api/v1
+  $API_URL
 
   # Another line break.
   echo
