@@ -9,7 +9,6 @@ import (
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/httprate"
-	"github.com/go-playground/validator/v10"
 	"github.com/lauslim12/asuka"
 	"github.com/lauslim12/expert-systems/pkg/inference"
 )
@@ -57,12 +56,6 @@ func Configure(pathToWebDirectory, applicationMode string) http.Handler {
 			statusCode, err := asuka.Parse(w, r, input, asuka.DefaultConfig())
 			if err != nil {
 				sendFailureResponse(w, NewFailureResponse(statusCode, err.Error()))
-				return
-			}
-
-			// Validate fields.
-			if err := validator.New().Struct(input); err != nil {
-				sendFailureResponse(w, NewFailureResponse(http.StatusBadRequest, err.Error()))
 				return
 			}
 
