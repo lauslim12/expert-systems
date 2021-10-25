@@ -4,6 +4,15 @@ Expert Systems Research (diagnosis of Tuberculosis with Forward Chaining and Cer
 
 This research is still in progress and not completed yet.
 
+## Features
+
+- API-based architecture with Go as the implementation of the inference engine.
+- Usage of Certainty Factor and Forward Chaining algorithms in order to infer results.
+- Responsive web design with complete `a11y` support with React.
+- Built with performance in mind and deployed natively on a Cloud Platform.
+- Fully unit-tested with 100% code coverage.
+- Simple, intuitive UI for a good user experience.
+
 ## Requirements
 
 - [Docker](https://www.docker.com/) (if you want to containerize)
