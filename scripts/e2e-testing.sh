@@ -10,11 +10,11 @@ main() {
       "symptoms": [
         {
           "symptomId": "S1",
-          "weight": 0.5
+          "weight": 0.2
         },
         {
           "symptomId": "S2",
-          "weight": 0.4
+          "weight": 0.2
         },
         {
           "symptomId": "S3",
@@ -22,7 +22,7 @@ main() {
         },
         {
           "symptomId": "S4",
-          "weight": 0.6
+          "weight": 0.4
         },
         {
           "symptomId": "S5",
@@ -58,7 +58,7 @@ main() {
         },
         {
           "symptomId": "S13",
-          "weight": 0.8
+          "weight": 1
         }
       ]
     }' \
