@@ -4,8 +4,6 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"testing"
-
-	"github.com/stretchr/testify/assert"
 )
 
 func TestLimiterHandler(t *testing.T) {
@@ -20,14 +18,12 @@ func TestLimiterHandler(t *testing.T) {
 		method         string
 		route          string
 		expectedStatus int
-		expectedBody   *FailureResponse
 	}{
 		{
 			name:           "test_limiter",
 			method:         http.MethodGet,
 			route:          "/api/v1",
 			expectedStatus: http.StatusTooManyRequests,
-			expectedBody:   NewFailureResponse(http.StatusTooManyRequests, "You have performed too many requests! Please try again in a minute!"),
 		},
 	}
 
@@ -39,9 +35,9 @@ func TestLimiterHandler(t *testing.T) {
 				handler.ServeHTTP(w, r)
 
 				if i == limit {
-					assert.NotNil(t, w.Body)
-					assert.Equal(t, test.expectedStatus, w.Code)
-					assert.JSONEq(t, structToJSON(test.expectedBody), w.Body.String())
+					if test.expectedStatus != w.Code {
+						t.Errorf("Expected and actual status code values are different! Expected: %v. Got: %v", test.expectedStatus, w.Code)
+					}
 				}
 			}
 		})
@@ -59,7 +55,12 @@ func TestHTTPSRedirectOnProduction(t *testing.T) {
 		r.Header.Add("X-Forwarded-Proto", "http")
 		handler.ServeHTTP(w, r)
 
-		assert.Equal(t, http.StatusPermanentRedirect, w.Code)
-		assert.Equal(t, "https://example.com/api/v1", w.Result().Header.Get("Location"))
+		if http.StatusPermanentRedirect != w.Code {
+			t.Errorf("Expected and actual status code values are different! Expected: %v. Got: %v", http.StatusMovedPermanently, w.Code)
+		}
+
+		if w.Result().Header.Get("Location") != "https://example.com/api/v1" {
+			t.Errorf("Expected and actual location values are different! Expected: %v. Got: %v", "https://example.com/api/v1", w.Result().Header.Get("Location"))
+		}
 	})
 }

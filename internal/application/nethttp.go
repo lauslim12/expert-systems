@@ -1,6 +1,7 @@
 package application
 
 import (
+	"encoding/json"
 	"fmt"
 	"net/http"
 	"os"
@@ -9,10 +10,63 @@ import (
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/httprate"
-	"github.com/go-playground/validator/v10"
 	"github.com/lauslim12/asuka"
 	"github.com/lauslim12/expert-systems/pkg/inference"
 )
+
+// Application constants for application modes.
+const (
+	applicationModeDevelopment = "development"
+	applicationModeProduction  = "production"
+)
+
+// SuccessResponse is used to handle successful responses.
+type SuccessResponse struct {
+	Status  string      `json:"status"`
+	Code    int         `json:"code"`
+	Message string      `json:"message"`
+	Data    interface{} `json:"data,omitempty"`
+}
+
+// FailureResponse is used to handle failed requests.
+type FailureResponse struct {
+	Status  string `json:"status"`
+	Code    int    `json:"code"`
+	Message string `json:"message"`
+}
+
+// NewSuccessResponse will create an instance of 'SuccessResponse' with default values.
+func NewSuccessResponse(code int, message string, data interface{}) *SuccessResponse {
+	return &SuccessResponse{
+		Status:  "success",
+		Code:    code,
+		Message: message,
+		Data:    data,
+	}
+}
+
+// NewFailureResponse will create an instance of 'FailureResponse' with default values.
+func NewFailureResponse(code int, message string) *FailureResponse {
+	return &FailureResponse{
+		Status:  "fail",
+		Code:    code,
+		Message: message,
+	}
+}
+
+// Utility function to send back success response to users.
+func sendSuccessResponse(w http.ResponseWriter, successResponse *SuccessResponse) {
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(successResponse.Code)
+	json.NewEncoder(w).Encode(successResponse)
+}
+
+// Utility function to send back error response to users.
+func sendFailureResponse(w http.ResponseWriter, failureResponse *FailureResponse) {
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(failureResponse.Code)
+	json.NewEncoder(w).Encode(failureResponse)
+}
 
 // Initialize application.
 // The 'pathToWebDirectory' is usually filled with './web/build' (the built React application location).
@@ -60,21 +114,11 @@ func Configure(pathToWebDirectory, applicationMode string) http.Handler {
 				return
 			}
 
-			// Validate fields.
-			if err := validator.New().Struct(input); err != nil {
-				sendFailureResponse(w, NewFailureResponse(http.StatusBadRequest, err.Error()))
-				return
-			}
-
-			// Perform inference with our Expert System.
-			exampleInferredData, err := inference.Infer()
-			if err != nil {
-				sendFailureResponse(w, NewFailureResponse(http.StatusInternalServerError, err.Error()))
-				return
-			}
+			// Perform inference with our Expert System based on the given input.
+			inferredData := inference.Infer(input)
 
 			// Send back response.
-			res := NewSuccessResponse(http.StatusOK, "Successfully processed data in the Expert System!", exampleInferredData)
+			res := NewSuccessResponse(http.StatusOK, "Successfully processed data in the Expert System!", inferredData)
 			sendSuccessResponse(w, res)
 		})
 
@@ -91,7 +135,7 @@ func Configure(pathToWebDirectory, applicationMode string) http.Handler {
 		})
 	})
 
-	// Fallback route, serve React app. Below works, but the tests return 404.
+	// Fallback route, serve React app.
 	r.Get("/*", func(w http.ResponseWriter, r *http.Request) {
 		fs := http.FileServer(http.Dir(pathToWebDirectory))
 
