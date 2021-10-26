@@ -1,10 +1,12 @@
+import type UserCertaintyWeight from './UserCertaintyWeight';
+
 /**
  * Represents the symptom ID and its user confidence.
  * Check out the Go library in order to know about the 'symptomId' attribute.
  */
 type SymptomAndWeight = {
   symptomId: string;
-  weight: number;
+  weight: UserCertaintyWeight;
 };
 
 /**
