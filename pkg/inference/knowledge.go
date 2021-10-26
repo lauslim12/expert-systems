@@ -27,20 +27,59 @@ func getDiseases() []Disease {
 					Link: "https://www.cdc.gov/tb/topic/basics/tbprevention.htm",
 				},
 			},
-			Symptoms: []string{
-				"S1",
-				"S2",
-				"S3",
-				"S4",
-				"S5",
-				"S6",
-				"S7",
-				"S8",
-				"S9",
-				"S10",
-				"S11",
-				"S12",
-				"S13",
+			Symptoms: []SymptomAndWeight{
+				{
+					SymptomID: "S1",
+					Weight:    0.513,
+				},
+				{
+					SymptomID: "S2",
+					Weight:    0.475,
+				},
+				{
+					SymptomID: "S3",
+					Weight:    0.519,
+				},
+				{
+					SymptomID: "S4",
+					Weight:    0.514,
+				},
+				{
+					SymptomID: "S5",
+					Weight:    0.494,
+				},
+				{
+					SymptomID: "S6",
+					Weight:    0.511,
+				},
+				{
+					SymptomID: "S7",
+					Weight:    0.487,
+				},
+				{
+					SymptomID: "S8",
+					Weight:    0.521,
+				},
+				{
+					SymptomID: "S9",
+					Weight:    0.496,
+				},
+				{
+					SymptomID: "S10",
+					Weight:    0.484,
+				},
+				{
+					SymptomID: "S11",
+					Weight:    0.493,
+				},
+				{
+					SymptomID: "S12",
+					Weight:    0.478,
+				},
+				{
+					SymptomID: "S13",
+					Weight:    0.488,
+				},
 			},
 		},
 	}

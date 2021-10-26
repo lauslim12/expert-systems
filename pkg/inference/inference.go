@@ -2,13 +2,13 @@ package inference
 
 // Disease is the representation of the diseases data in this Expert System.
 type Disease struct {
-	ID          string          `json:"id"`
-	Name        string          `json:"name"`
-	Description string          `json:"description"`
-	Treatment   string          `json:"treatment"`
-	Prevention  string          `json:"prevention"`
-	Source      []SourceAndLink `json:"source"`
-	Symptoms    []string        `json:"symptoms"`
+	ID          string             `json:"id"`
+	Name        string             `json:"name"`
+	Description string             `json:"description"`
+	Treatment   string             `json:"treatment"`
+	Prevention  string             `json:"prevention"`
+	Source      []SourceAndLink    `json:"source"`
+	Symptoms    []SymptomAndWeight `json:"symptoms"`
 }
 
 // Inferred is the object that will be returned after all of the calculations.
