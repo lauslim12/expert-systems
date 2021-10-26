@@ -11,7 +11,7 @@ This research is still in progress and not completed yet.
 - Responsive web design with complete `a11y` support with React and TypeScript.
 - Built with performance in mind and deployed natively on a Cloud Platform.
 - Fully unit-tested with 100% code coverage.
-- Simple, intuitive UI for a good user experience (includes 404 page and dark mode!).
+- Simple, intuitive UI for a good user experience (includes 404 page and dark mode).
 
 ## Requirements
 
@@ -134,3 +134,4 @@ This application is open sourced under MIT License.
 We would like to acknowledge these sources of helpful information for they have helped us during the research process.
 
 - [Victor Caelina for the TB Symptoms Dataset](https://www.kaggle.com/victorcaelina/tuberculosis-symptoms)
+- [Icons8.com for the Hospital Favicon](https://icons8.com/)
