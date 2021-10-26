@@ -1,3 +1,5 @@
+import 'focus-visible/dist/focus-visible';
+
 import { ChakraProvider, ColorModeScript, extendTheme } from '@chakra-ui/react';
 import React from 'react';
 import ReactDOM from 'react-dom';
