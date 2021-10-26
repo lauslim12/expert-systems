@@ -22,8 +22,15 @@
     "url": "https://github.com/lauslim12/expert-systems/issues"
   },
   "dependencies": {
+    "@chakra-ui/react": "^1.6.10",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
+    "framer-motion": "^4",
+    "history": "5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-icons": "^4.3.1",
+    "react-router-dom": "^6.0.0-beta.8",
     "react-scripts": "4.0.3",
     "web-vitals": "^2.1.2"
   },
@@ -54,7 +61,7 @@
   },
   "prettier": {
     "singleQuote": true,
-    "printWidth": 100
+    "printWidth": 80
   },
   "browserslist": {
     "production": [
