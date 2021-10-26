@@ -2,14 +2,14 @@ import { Button, FormControl, FormLabel, SimpleGrid } from '@chakra-ui/react';
 import { Dispatch, memo, SetStateAction } from 'react';
 import { AiOutlineCheck } from 'react-icons/ai';
 
-import type UserCertaintyWeight from '../../types/UserCertaintyWeight';
+import { StateCertaintyWeight } from '../../types/UserCertaintyWeight';
 
 /**
  * Will accept a state, the setter, and the title.
  */
 type Props = {
-  state: UserCertaintyWeight;
-  setState: Dispatch<SetStateAction<UserCertaintyWeight>>;
+  state: StateCertaintyWeight;
+  setState: Dispatch<SetStateAction<StateCertaintyWeight>>;
   title: string;
 };
 
@@ -25,21 +25,12 @@ const AnswerInput = ({ state, setState, title }: Props) => (
 
     <SimpleGrid columns={[1, 2, 4]} spacing="10px">
       <Button
-        colorScheme="red"
-        leftIcon={state === 1 ? <AiOutlineCheck /> : undefined}
-        variant={state === 1 ? 'solid' : 'outline'}
-        onClick={() => setState(1)}
+        colorScheme="green"
+        leftIcon={state === 0 ? <AiOutlineCheck /> : undefined}
+        variant={state === 0 ? 'solid' : 'outline'}
+        onClick={() => setState(0)}
       >
-        I strongly feel so
-      </Button>
-
-      <Button
-        colorScheme="orange"
-        leftIcon={state === 0.75 ? <AiOutlineCheck /> : undefined}
-        variant={state === 0.75 ? 'solid' : 'outline'}
-        onClick={() => setState(0.75)}
-      >
-        I often feel so
+        I do not/never feel so
       </Button>
 
       <Button
@@ -52,12 +43,21 @@ const AnswerInput = ({ state, setState, title }: Props) => (
       </Button>
 
       <Button
-        colorScheme="green"
-        leftIcon={state === 0 ? <AiOutlineCheck /> : undefined}
-        variant={state === 0 ? 'solid' : 'outline'}
-        onClick={() => setState(0)}
+        colorScheme="orange"
+        leftIcon={state === 0.75 ? <AiOutlineCheck /> : undefined}
+        variant={state === 0.75 ? 'solid' : 'outline'}
+        onClick={() => setState(0.75)}
       >
-        I do not/never feel so
+        I often feel so
+      </Button>
+
+      <Button
+        colorScheme="red"
+        leftIcon={state === 1 ? <AiOutlineCheck /> : undefined}
+        variant={state === 1 ? 'solid' : 'outline'}
+        onClick={() => setState(1)}
+      >
+        I strongly feel so
       </Button>
     </SimpleGrid>
   </FormControl>
