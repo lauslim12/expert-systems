@@ -3,7 +3,7 @@ import { lazy, memo, Suspense, useState } from 'react';
 
 import type Request from '../types/Request';
 import type Response from '../types/Response';
-import type UserCertaintyWeight from '../types/UserCertaintyWeight';
+import type { StateCertaintyWeight } from '../types/UserCertaintyWeight';
 import request from '../utils/request';
 import FailedToast from './FailedToast';
 import AnswerInput from './Input/AnswerInput';
@@ -21,75 +21,98 @@ const ResultModal = lazy(() => import('../components/Modal/ResultModal'));
 const Tuberculosis = () => {
   const [openResult, setOpenResult] = useState(false);
   const [result, setResult] = useState({} as Response);
-  const [isFever, setIsFever] = useState(0 as UserCertaintyWeight);
-  const [isCoughBlood, setIsCoughBlood] = useState(0 as UserCertaintyWeight);
-  const [isSpBloody, setIsSpBloody] = useState(0 as UserCertaintyWeight);
-  const [isNightSweat, setIsNightSweat] = useState(0 as UserCertaintyWeight);
-  const [isChestPain, setIsChestPain] = useState(0 as UserCertaintyWeight);
-  const [isBackPain, setIsBackPain] = useState(0 as UserCertaintyWeight);
-  const [isShortBreath, setIsShortBreath] = useState(0 as UserCertaintyWeight);
-  const [isWeightLoss, setIsWeightLoss] = useState(0 as UserCertaintyWeight);
-  const [isBodyTired, setIsBodyTired] = useState(0 as UserCertaintyWeight);
-  const [isLumps, setIsLumps] = useState(0 as UserCertaintyWeight);
-  const [isCoughing, setIsCoughing] = useState(0 as UserCertaintyWeight);
-  const [isSwollen, setIsSwollen] = useState(0 as UserCertaintyWeight);
-  const [isLossApetite, setIsLossApetite] = useState(0 as UserCertaintyWeight);
+  const [fever, setFever] = useState(null as StateCertaintyWeight);
+  const [coughBlood, setCoughBlood] = useState(null as StateCertaintyWeight);
+  const [spBloody, setSpBloody] = useState(null as StateCertaintyWeight);
+  const [nightSweat, setNightSweat] = useState(null as StateCertaintyWeight);
+  const [chestPain, setChestPain] = useState(null as StateCertaintyWeight);
+  const [backPain, setBackPain] = useState(null as StateCertaintyWeight);
+  const [shortBreath, setShortBreath] = useState(null as StateCertaintyWeight);
+  const [weightLoss, setWeightLoss] = useState(null as StateCertaintyWeight);
+  const [bodyTired, setBodyTired] = useState(null as StateCertaintyWeight);
+  const [lumps, setLumps] = useState(null as StateCertaintyWeight);
+  const [coughing, setCoughing] = useState(null as StateCertaintyWeight);
+  const [swollen, setSwollen] = useState(null as StateCertaintyWeight);
+  const [lossApetite, setLossApetite] = useState(null as StateCertaintyWeight);
   const toast = useToast();
 
   const submitResult = () => {
+    // Not '!' as 0 equals false as well. We need that literal 0 value.
+    if (
+      fever === null ||
+      coughBlood === null ||
+      spBloody === null ||
+      nightSweat === null ||
+      chestPain === null ||
+      backPain === null ||
+      shortBreath === null ||
+      weightLoss === null ||
+      bodyTired === null ||
+      lumps === null ||
+      coughing === null ||
+      swollen === null ||
+      lossApetite === null
+    ) {
+      FailedToast(
+        toast,
+        'Please input all of the information before continuing!'
+      );
+      return;
+    }
+
     const requestBody: Request = {
       symptoms: [
         {
           symptomId: 'S1',
-          weight: isFever,
+          weight: fever,
         },
         {
           symptomId: 'S2',
-          weight: isCoughBlood,
+          weight: coughBlood,
         },
         {
           symptomId: 'S3',
-          weight: isSpBloody,
+          weight: spBloody,
         },
         {
           symptomId: 'S4',
-          weight: isNightSweat,
+          weight: nightSweat,
         },
         {
           symptomId: 'S5',
-          weight: isChestPain,
+          weight: chestPain,
         },
         {
           symptomId: 'S6',
-          weight: isBackPain,
+          weight: backPain,
         },
         {
           symptomId: 'S7',
-          weight: isShortBreath,
+          weight: shortBreath,
         },
         {
           symptomId: 'S8',
-          weight: isWeightLoss,
+          weight: weightLoss,
         },
         {
           symptomId: 'S9',
-          weight: isBodyTired,
+          weight: bodyTired,
         },
         {
           symptomId: 'S10',
-          weight: isLumps,
+          weight: lumps,
         },
         {
           symptomId: 'S11',
-          weight: isCoughBlood,
+          weight: coughBlood,
         },
         {
           symptomId: 'S12',
-          weight: isSwollen,
+          weight: swollen,
         },
         {
           symptomId: 'S13',
-          weight: isLossApetite,
+          weight: lossApetite,
         },
       ],
     };
@@ -112,80 +135,80 @@ const Tuberculosis = () => {
 
       <VStack as="form" spacing={5}>
         <AnswerInput
-          state={isFever}
-          setState={setIsFever}
+          state={fever}
+          setState={setFever}
           title="I have a fever for two weeks or more"
         />
 
         <AnswerInput
-          state={isCoughBlood}
-          setState={setIsCoughBlood}
+          state={coughBlood}
+          setState={setCoughBlood}
           title="I cough blood"
         />
 
         <AnswerInput
-          state={isSpBloody}
-          setState={setIsSpBloody}
+          state={spBloody}
+          setState={setSpBloody}
           title="My sputum is mixed with blood"
         />
 
         <AnswerInput
-          state={isNightSweat}
-          setState={setIsNightSweat}
+          state={nightSweat}
+          setState={setNightSweat}
           title="I sweat at night"
         />
 
         <AnswerInput
-          state={isChestPain}
-          setState={setIsChestPain}
+          state={chestPain}
+          setState={setChestPain}
           title="I suffer from chest pain constantly"
         />
 
         <AnswerInput
-          state={isBackPain}
-          setState={setIsBackPain}
+          state={backPain}
+          setState={setBackPain}
           title="I suffer from back pain constantly"
         />
 
         <AnswerInput
-          state={isShortBreath}
-          setState={setIsShortBreath}
+          state={shortBreath}
+          setState={setShortBreath}
           title="I feel a shortness of breath"
         />
 
         <AnswerInput
-          state={isWeightLoss}
-          setState={setIsWeightLoss}
+          state={weightLoss}
+          setState={setWeightLoss}
           title="I have experienced weight loss"
         />
 
         <AnswerInput
-          state={isBodyTired}
-          setState={setIsBodyTired}
+          state={bodyTired}
+          setState={setBodyTired}
           title="My body feels like always tired"
         />
 
         <AnswerInput
-          state={isLumps}
-          setState={setIsLumps}
+          state={lumps}
+          setState={setLumps}
           title="Around my armpits and neck, lumps appeared"
         />
 
         <AnswerInput
-          state={isCoughing}
-          setState={setIsCoughing}
+          state={coughing}
+          setState={setCoughing}
           title="I cough continously from two weeks to four weeks"
         />
 
         <AnswerInput
-          state={isSwollen}
-          setState={setIsSwollen}
+          state={swollen}
+          setState={setSwollen}
           title="My lymph nodes are swollen"
         />
 
         <AnswerInput
-          state={isLossApetite}
-          setState={setIsLossApetite}
+          state={lossApetite}
+          setState={setLossApetite}
           title="I experienced a loss of apetite"
         />
 
