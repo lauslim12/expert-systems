@@ -15,11 +15,20 @@ import {
 import { memo, useState } from 'react';
 import { AiFillCheckCircle } from 'react-icons/ai';
 
+/**
+ * Accepts ChakraUI's basic props: 'isOpen' and 'onClose'.
+ */
 type Props = {
   isOpen: boolean;
   onClose: () => void;
 };
 
+/**
+ * This modal is used to render the disclaimer.
+ *
+ * @param param - ChakraUI's modal props
+ * @returns React Functional Component
+ */
 const DisclaimerModal = ({ isOpen, onClose }: Props) => {
   const [isAgreeWithTerms, setIsAgreeWithTerms] = useState(false);
   const [isResponsible, setIsResponsible] = useState(false);
