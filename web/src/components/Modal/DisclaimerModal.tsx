@@ -38,7 +38,6 @@ const DisclaimerModal = ({ isOpen, onClose }: Props) => {
       isOpen={isOpen}
       onClose={onClose}
       size="5xl"
-      motionPreset="slideInBottom"
       closeOnEsc={false}
       closeOnOverlayClick={false}
     >
