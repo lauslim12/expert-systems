@@ -7,11 +7,21 @@ import {
 } from '@chakra-ui/react';
 import { memo } from 'react';
 
+/**
+ * Will accept a function to open up modals again.
+ */
 type Props = {
   setOpenDisclaimer: () => void;
+  setOpenAbout: () => void;
 };
 
-const Footer = ({ setOpenDisclaimer }: Props) => {
+/**
+ * Footer component.
+ *
+ * @param param - Setter functions to open up modals
+ * @returns React Functional Component
+ */
+const Footer = ({ setOpenDisclaimer, setOpenAbout }: Props) => {
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (
@@ -29,6 +39,10 @@ const Footer = ({ setOpenDisclaimer }: Props) => {
       <Link href="https://github.com/lauslim12/expert-systems" isExternal>
         GitHub
       </Link>
+
+      <Text as="button" onClick={setOpenAbout}>
+        About
+      </Text>
 
       <Text as="button" onClick={setOpenDisclaimer}>
         Terms
