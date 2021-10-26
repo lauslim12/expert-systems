@@ -66,6 +66,13 @@ const DisclaimerModal = ({ isOpen, onClose }: Props) => {
                 application is made for research and educational purposes only.
               </Text>
 
+              <Text>
+                In this website, we use cookies in order to store your color
+                mode preferences. We do not use your data for anything. As for
+                licenses, all of the usages are cited properly, either in this
+                app or in the repository.
+              </Text>
+
               <Text as="strong">
                 This application IS NOT to be construed as a complete medical
                 advice. Consult a medical expert in your area if you need to

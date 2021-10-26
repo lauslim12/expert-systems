@@ -1,4 +1,4 @@
-import { Button, useToast, VStack } from '@chakra-ui/react';
+import { Button, Text, useToast, VStack } from '@chakra-ui/react';
 import { lazy, memo, Suspense, useState } from 'react';
 
 import type Request from '../types/Request';
@@ -19,6 +19,7 @@ const ResultModal = lazy(() => import('../components/Modal/ResultModal'));
  * @returns React Functional Component
  */
 const Tuberculosis = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const [openResult, setOpenResult] = useState(false);
   const [result, setResult] = useState({} as Response);
   const [fever, setFever] = useState(null as StateCertaintyWeight);
@@ -117,10 +118,12 @@ const Tuberculosis = () => {
       ],
     };
 
+    setIsLoading(true);
     request('/api/v1', requestBody, 'POST')
       .then((data: Response) => setResult(data))
       .then(() => setOpenResult(true))
-      .catch((err) => FailedToast(toast, err.message));
+      .catch((err) => FailedToast(toast, err.message))
+      .finally(() => setIsLoading(false));
   };
 
   return (
@@ -212,14 +215,19 @@ const Tuberculosis = () => {
           title="I experienced a loss of apetite"
         />
 
-        <Button
-          colorScheme="green"
-          w="full"
-          variant="outline"
-          onClick={submitResult}
-        >
-          Results
-        </Button>
+        <VStack w="full" align="start">
+          <Text fontWeight="bold">Analyze answers</Text>
+
+          <Button
+            colorScheme="pink"
+            w="full"
+            variant="solid"
+            onClick={submitResult}
+            isLoading={isLoading}
+          >
+            Results
+          </Button>
+        </VStack>
       </VStack>
     </>
   );
