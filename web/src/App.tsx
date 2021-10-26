@@ -1,8 +1,8 @@
 import { chakra, Flex } from '@chakra-ui/react';
 import { memo, useEffect, useState } from 'react';
 
-import DisclaimerModal from './components/DisclaimerModal';
 import Footer from './components/Footer';
+import DisclaimerModal from './components/Modal/DisclaimerModal';
 import Response from './types/Response';
 
 const App = () => {
