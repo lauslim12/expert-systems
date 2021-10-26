@@ -12,7 +12,7 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/react';
-import { memo, useState } from 'react';
+import { memo, useRef, useState } from 'react';
 import { AiFillCheckCircle } from 'react-icons/ai';
 
 /**
@@ -32,18 +32,20 @@ type Props = {
 const DisclaimerModal = ({ isOpen, onClose }: Props) => {
   const [isAgreeWithTerms, setIsAgreeWithTerms] = useState(false);
   const [isResponsible, setIsResponsible] = useState(false);
+  const focusRef = useRef(null);
 
   return (
     <Modal
       isOpen={isOpen}
       onClose={onClose}
+      initialFocusRef={focusRef}
       size="5xl"
       closeOnEsc={false}
       closeOnOverlayClick={false}
     >
       <ModalOverlay />
 
-      <ModalContent>
+      <ModalContent ref={focusRef}>
         <ModalHeader>Disclaimer & Terms</ModalHeader>
 
         <ModalBody>
