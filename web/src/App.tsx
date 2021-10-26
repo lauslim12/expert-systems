@@ -1,20 +1,23 @@
-import { chakra, Flex } from '@chakra-ui/react';
-import { memo, useEffect, useState } from 'react';
+import { Flex, VStack } from '@chakra-ui/react';
+import { lazy, Suspense, useState } from 'react';
 
 import Footer from './components/Footer';
 import DisclaimerModal from './components/Modal/DisclaimerModal';
-import Response from './types/Response';
+import Tuberculosis from './components/Tuberculosis';
 
+/**
+ * Lazy-load 'About' modal, as we have no need for it at render time.
+ */
+const AboutModal = lazy(() => import('./components/Modal/AboutModal'));
+
+/**
+ * Application starting point.
+ *
+ * @returns React Functional Component
+ */
 const App = () => {
+  const [openAbout, setOpenAbout] = useState(false);
   const [openDisclaimer, setOpenDisclaimer] = useState(true);
-  const [response, setResponse] = useState({} as Response);
-
-  useEffect(() => {
-    fetch('/api/v1')
-      .then((res) => res.json())
-      .then((data: Response) => setResponse(data))
-      .catch((err) => console.error(err));
-  }, []);
 
   return (
     <>
@@ -23,16 +26,26 @@ const App = () => {
         onClose={() => setOpenDisclaimer(false)}
       />
 
-      <Flex h="100vh" direction="column" maxW="1200px" mx="auto">
-        <chakra.div as="main" flex={1} mt={5} mb={5}>
-          <p>Hello, Expert Systems!</p>
-          {response && <p>JSON API response: {JSON.stringify(response)}</p>}
-        </chakra.div>
+      <Suspense fallback={null}>
+        <AboutModal isOpen={openAbout} onClose={() => setOpenAbout(false)} />
+      </Suspense>
 
-        <Footer setOpenDisclaimer={() => setOpenDisclaimer(true)} />
+      <Flex h="100vh" direction="column" maxW="1200px" mx="auto">
+        <VStack as="main" p={3} spacing={5} flex={1} mt={5} mb={5}>
+          <VStack as="header" w="full">
+            <p>Hello, Expert Systems!</p>
+          </VStack>
+
+          <Tuberculosis />
+        </VStack>
+
+        <Footer
+          setOpenDisclaimer={() => setOpenDisclaimer(true)}
+          setOpenAbout={() => setOpenAbout(true)}
+        />
       </Flex>
     </>
   );
 };
 
-export default memo(App);
+export default App;
