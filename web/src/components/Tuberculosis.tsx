@@ -133,7 +133,7 @@ const Tuberculosis = () => {
         />
       </Suspense>
 
-      <VStack as="form" spacing={5}>
+      <VStack as="form" w={['full', '70vw']} spacing={5}>
         <AnswerInput
           state={fever}
           setState={setFever}
