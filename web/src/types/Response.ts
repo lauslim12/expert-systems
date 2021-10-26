@@ -10,7 +10,10 @@ type Inferred = {
     description: string;
     treatment: string;
     prevention: string;
-    source: string[];
+    source: {
+      name: string;
+      link: string;
+    }[];
     symptoms: string[];
   };
 };

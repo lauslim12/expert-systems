@@ -2,13 +2,13 @@ package inference
 
 // Disease is the representation of the diseases data in this Expert System.
 type Disease struct {
-	ID          string   `json:"id"`
-	Name        string   `json:"name"`
-	Description string   `json:"description"`
-	Treatment   string   `json:"treatment"`
-	Prevention  string   `json:"prevention"`
-	Source      []string `json:"source"`
-	Symptoms    []string `json:"symptoms"`
+	ID          string          `json:"id"`
+	Name        string          `json:"name"`
+	Description string          `json:"description"`
+	Treatment   string          `json:"treatment"`
+	Prevention  string          `json:"prevention"`
+	Source      []SourceAndLink `json:"source"`
+	Symptoms    []string        `json:"symptoms"`
 }
 
 // Inferred is the object that will be returned after all of the calculations.
@@ -27,6 +27,12 @@ type SymptomAndWeight struct {
 // Input is used as a representative of a user's input.
 type Input struct {
 	Symptoms []SymptomAndWeight `json:"symptoms"`
+}
+
+// SourceAndLink represents the source name and its link for the information regarding a disease.
+type SourceAndLink struct {
+	Name string `json:"name"`
+	Link string `json:"link"`
 }
 
 // Symptom is an object that represents the symptoms data in this library.
