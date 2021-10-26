@@ -1,9 +1,11 @@
-import { Button, VStack } from '@chakra-ui/react';
+import { Button, useToast, VStack } from '@chakra-ui/react';
 import { lazy, memo, Suspense, useState } from 'react';
 
 import type Request from '../types/Request';
 import type Response from '../types/Response';
 import type UserCertaintyWeight from '../types/UserCertaintyWeight';
+import request from '../utils/request';
+import FailedToast from './FailedToast';
 import AnswerInput from './Input/AnswerInput';
 
 /**
@@ -32,6 +34,7 @@ const Tuberculosis = () => {
   const [isCoughing, setIsCoughing] = useState(0 as UserCertaintyWeight);
   const [isSwollen, setIsSwollen] = useState(0 as UserCertaintyWeight);
   const [isLossApetite, setIsLossApetite] = useState(0 as UserCertaintyWeight);
+  const toast = useToast();
 
   const submitResult = () => {
     const requestBody: Request = {
@@ -91,16 +94,10 @@ const Tuberculosis = () => {
       ],
     };
 
-    fetch('/api/v1', {
-      method: 'POST',
-      body: JSON.stringify(requestBody),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((res) => res.json())
+    request('/api/v1', requestBody, 'POST')
       .then((data: Response) => setResult(data))
-      .then(() => setOpenResult(true));
+      .then(() => setOpenResult(true))
+      .catch((err) => FailedToast(toast, err.message));
   };
 
   return (
