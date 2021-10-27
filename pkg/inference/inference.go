@@ -26,6 +26,7 @@ type SymptomAndWeight struct {
 
 // Input is used as a representative of a user's input.
 type Input struct {
+	Locale   string             `json:"locale"`
 	Symptoms []SymptomAndWeight `json:"symptoms"`
 }
 
@@ -87,8 +88,13 @@ func CertaintyFactor(input *Input, symptoms []Symptom) float64 {
 // We will use Forward Chaining and Certainty Factor algorithms in order to decide that.
 // Algorithm: Get knowledge base -> Forward Chaining -> Certainty Factor -> Result.
 func Infer(input *Input) *Inferred {
+	// If no locale, set it to be English.
+	if input.Locale == "" {
+		input.Locale = "en"
+	}
+
 	// 0. Fetch all data from the knowledge base.
-	diseases := getDiseases()
+	diseases := getDiseases(input.Locale)
 	symptoms := getSymptoms()
 
 	// 1. Infer if the user is diagnosed with TB or not with Forward Chaining.
