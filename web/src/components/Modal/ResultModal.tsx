@@ -105,8 +105,8 @@ const ResultModal = ({ isOpen, onClose, results }: Props) => {
                       fontWeight="bold"
                     >
                       {results.data.verdict === true
-                        ? t('inference.verdictNoTB')
-                        : t('inference.verdictTB')}
+                        ? t('inference.verdictTB')
+                        : t('inference.verdictNoTB')}
                     </Text>
 
                     <Text>{t('inference.verdictCalculation')}</Text>
