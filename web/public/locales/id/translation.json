@@ -1,63 +1,82 @@
 {
   "heading": {
-    "title": "Hello, Expert Systems!"
+    "title": "Halo, Expert Systems!"
   },
   "general": {
-    "darken": "Darken",
-    "lighten": "Lighten",
-    "analyze": "Analyze answers",
-    "results": "Results"
+    "darken": "Gelapkan",
+    "lighten": "Terangkan",
+    "analyze": "Analisis jawaban",
+    "results": "Hasil",
+    "notComplete": "Mohon isi seluruh informasi terlebih dahulu!"
+  },
+  "notFound": {
+    "title": "Tidak ditemukan!",
+    "message": "Halaman yang Anda cari mungkin (tidak) ada di masa lampau, tetapi sekarang sudah pasti tidak ada.",
+    "back": "Kembali ke Home"
   },
   "tbSymptoms": {
-    "symptomOne": "I have a fever for two weeks or more.",
-    "symptomTwo": "I cough blood",
-    "symptomThree": "My sputum is mixed with blood",
-    "symptomFour": "I sweat at night",
-    "symptomFive": "I suffer from chest pain constantly",
-    "symptomSix": "I suffer from back pain constantly",
-    "symptomSeven": "I feel a shortness of breath",
-    "symptomEight": "I have experienced weight loss",
-    "symptomNine": "My body feels like always tired",
-    "symptomTen": "Around my armpits and neck, lumps appeared",
-    "symptomEleven": "I cough continously from two weeks to four weeks",
-    "symptomTwelve": "My lymph nodes are swollen",
-    "symptomThirteen": "I experienced a loss of apetite"
+    "symptomOne": "Saya menderita demam untuk dua minggu atau lebih",
+    "symptomTwo": "Saya batuk darah",
+    "symptomThree": "Lendir saya bercampur dengan darah",
+    "symptomFour": "Saya berkeringat pada malam hari",
+    "symptomFive": "Saya menderita sakit dada secara kontinyu",
+    "symptomSix": "Saya menderita sakit punggung secara kontinyu",
+    "symptomSeven": "Saya merasa sulit bernafas",
+    "symptomEight": "Saya mengalami penurunan berat badan",
+    "symptomNine": "Badan saya selalu terasa lelah",
+    "symptomTen": "Di sekitar ketiak dan leher, muncul gumpalan",
+    "symptomEleven": "Saya batuk secara terus menerus dari dua hingga empat minggu",
+    "symptomTwelve": "Nodus limfa saya berkembang",
+    "symptomThirteen": "Saya mengalami penurunan nafsu makan"
   },
   "menu": {
-    "doNotFeelSo": "I do not/never feel so",
-    "sometimesFeelSo": "I sometimes feel so",
-    "oftenFeelSo": "I often feel so",
-    "stronglyFeelSo": "I strongly feel so"
+    "doNotFeelSo": "Tidak pernah merasa",
+    "sometimesFeelSo": "Terkadang merasa",
+    "oftenFeelSo": "Sering merasa",
+    "stronglyFeelSo": "Selalu merasa"
   },
   "disclaimer": {
-    "title": "Disclaimer & Terms",
-    "alert": "Please read the terms and conditions before using this application!",
-    "initial": "Even though this application is made based on available data and the opinion of the pertaining experts, this application is still not a fully correct way to diagnose yourself with. You can use this application as a first-aid kind of situation if you need to get to know about your condition as fast as possible. This application is made for research and educational purposes only.",
-    "privacy": "In this website, we use cookies in order to store your color mode preferences. We do not use your data for anything. As for licenses, all of the usages are cited properly, either in this app or in the repository.",
-    "warning": "This application IS NOT to be construed as a complete medical advice. Consult a medical expert in your area if you need to diagnose yourself in a more detailed way that is more catered to your needs. Use this tool with responsibility. If you need a specialized medical advice for your condition, DO NOT USE THIS APPLICATION.",
-    "license": "This software is provided \"as is\", without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose and noninfringement. In no event shall the authors or copyright holders be liable for any claim, damages or other liability, whether in an action of contract, tort or otherwise, arising from, out of or in connection with the software or the use or other dealings in the software.",
-    "agreement": "Please check below boxes to continue with this application.",
-    "understand": "I understand the terms written above.",
-    "responsibility": "All of the usage is my own responsibility."
+    "title": "Pernyataan & Kebijakan",
+    "alert": "Mohon membaca ini sebelum menggunakan aplikasi!",
+    "initial": "Meskipun aplikasi ini dibuat berdasarkan data yang sudah ada dan mendapatkan opini dari pakar yang bersangkutan, aplikasi ini masih bukan merupakan cara yang benar untuk mendiagnosis diri Anda. Anda dapat menggunakan aplikasi ini seperti pertolongan pertama apabila Anda perlu mengetahui kondisi Anda secepatnya. Aplikasi ini hanya dibuat untuk kepentingan penelitian dan pendidikan.",
+    "privacy": "Dalam situs ini, kami menggunakan teknologi cookie untuk menyimpan preferensi color mode milik Anda. Kami tidak menggunakan data Anda untuk kepentingan apapun. Untuk lisensi, seluruh penggunaan telah disitasi secara sesuai, baik di dalam aplikasi ini maupun dalam repositori kode aplikasi ini.",
+    "warning": "Aplikasi ini BUKAN untuk diinterpretasikan atau dipahami sebagai nasihat medis yang resmi. Konsultasi dengan dokter atau tenaga kesehatan di daerah Anda apabila Anda ingin mendiagnosis diri Anda secara lebih detail yang lebih sesuai dengan kondisi kesehatan Anda. Gunakan alat ini secara bijaksana. Apabila Anda membutuhkan nasihat medis khusus untuk kondisi kesehatan Anda secara spesifik dan terspesialisasi, JANGAN MENGGUNAKAN APLIKASI INI SAMA SEKALI.",
+    "license": "Perangkat lunak ini disediakan dengan sebagaimana adanya, tanpa garansi apapun, secara langsung maupun tidak langsung, termasuk tetapi tidak terbatas pada garansi penjualan dagang, kegunaan untuk tujuan tertentu, dan bukan merupakan pelanggaran. Tidak ada dalam segala jenis kegiatan atau aktivitas manapun penulis atau pemegang hak cipta dapat dituntut atau dapat dimintai pertanggungjawaban atas klaim apa pun, kerusakan, atau kewajiban lainnya, baik melalui aksi dalam kontrak tertulis maupun tidak tertulis, yang berkaitan dengan penggunaan perangkat lunak ini, baik secara langsung maupun tidak langsung.",
+    "agreement": "Mohon centang dua buah boks di bawah ini sebagai tanda persetujuan Anda.",
+    "understand": "Saya mengerti dan menyetujui tentang penggunaan di atas.",
+    "responsibility": "Seluruh penggunaan aplikasi ini merupakan tanggung jawab saya sendiri.",
+    "close": "Saya mengerti."
   },
   "about": {
-    "title": "About",
-    "alert": "About the app",
-    "content": "Pre-memory"
+    "title": "Tentang",
+    "alert": "Tentang aplikasi",
+    "content": "Pre-memory",
+    "close": "Oke!"
   },
   "inference": {
-    "title": "Inference Result",
-    "alert": "Your results are as follows.",
-    "verdict": "Verdict",
-    "verdictCalculation": "The calculation was done by using the Forward Chaining Algorithm and provides above result.",
-    "probability": "Probability",
-    "probabilityCalculation": "The calculation was done by using the Certainty Factor Algorithm and provides above result.",
-    "suggestion": "Suggestion",
-    "information": "Information",
-    "prevention": "Prevention",
-    "treatment": "Treatment",
-    "sources": "Sources",
-    "sourcesBeginning": "The sources of the data regarding of the disease are taken from the following sources:"
+    "title": "Hasil Inferensi",
+    "alert": "Hasil Anda adalah sebagai berikut.",
+    "verdict": "Kondisi",
+    "verdictTB": "Dari analisis dan sistem kami, diduga Anda menderita penyakit TB.",
+    "verdictNoTB": "Dari analisis dan sistem kami, diduga Anda tidak menderita penyakit TB.",
+    "verdictCalculation": "Kalkulasi dilakukan dengan metode Forward Chaining dan mendapatkan hasil seperti di atas.",
+    "probability": "Probabilitas",
+    "probabilityResult": "Angka probabilitas Anda terinfeksi TB adalah {{probability}}%.",
+    "probabilityCalculation": "Kalkulasi dilakukan dengan metode Certainty Factor dan mendapatkan hasil seperti di atas.",
+    "suggestion": "Saran",
+    "suggestionOkay": "Menimbang dari nilai probabilitas, Anda tidak ada risiko untuk menderita TB. Namun, akan selalu baik bagi Anda untuk pergi dan mendapatkan konsultasi kesehatan dari dokter atau tenaga kesehatan lainnya. Tetap jaga kesehatan dan keamanan!",
+    "suggestionVisit": "Menimbang dari nilai probabilitas, Anda memilik risiko ringan untuk menderita TB. Direkomendasikan bagi Anda untuk pergi dan mendapatkan konsultasi medis dari dokter ataupun tenanga kesehatan lainnya. Diharapkan, Anda tidak apa-apa. Tetap jaga kesehatan dan keamanan!",
+    "suggestionDangerous": "Dari nilai probabilitas, Anda memiliki risiko tinggi untuk menderita TB sekarang. Sangat direkomendasikan bagi Anda untuk langsung pergi ke rumah sakit dan mendapatkan pemeriksaan medis dengan dokter. Mohon jaga kesehatan dan keamanan!",
+    "information": "Informasi",
+    "prevention": "Pencegahan",
+    "treatment": "Perawatan",
+    "sources": "Sumber",
+    "sourcesBeginning": "Sumber-sumber data untuk penyakit didapatkan melalui sumber berikut:",
+    "json": "JSON",
+    "jsonBeginning": "Data mentahan untuk yang berminat",
+    "showCode": "Lihat data",
+    "hideCode": "Sembunyikan data",
+    "close": "Tutup"
   },
   "footer": {
     "github": "GitHub",

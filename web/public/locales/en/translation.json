@@ -10,7 +10,7 @@
     "notComplete": "Please fill all information before continuing!"
   },
   "notFound": {
-    "title": "",
+    "title": "Not Found!",
     "message": "The page you are looking for may or may not have existed in the past, but it certainly doesn't anymore.",
     "back": "Back to Home"
   },
