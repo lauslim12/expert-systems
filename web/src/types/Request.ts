@@ -13,6 +13,7 @@ type SymptomAndWeight = {
  * Type to represent the request body that will be sent to the API.
  */
 type Request = {
+  locale: 'en' | 'id';
   symptoms: SymptomAndWeight[];
 };
 

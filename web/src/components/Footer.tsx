@@ -6,6 +6,7 @@ import {
   useColorMode,
 } from '@chakra-ui/react';
 import { memo } from 'react';
+import { useTranslation } from 'react-i18next';
 
 /**
  * Will accept a function to open up modals again.
@@ -23,6 +24,7 @@ type Props = {
  */
 const Footer = ({ setOpenDisclaimer, setOpenAbout }: Props) => {
   const { colorMode, toggleColorMode } = useColorMode();
+  const { t, i18n } = useTranslation();
 
   return (
     <HStack
@@ -33,19 +35,33 @@ const Footer = ({ setOpenDisclaimer, setOpenAbout }: Props) => {
       p={2}
     >
       <Text as="button" onClick={toggleColorMode}>
-        {colorMode === 'light' ? 'Darken' : 'Lighten'}
+        {colorMode === 'light' ? t('general.darken') : t('general.lighten')}
       </Text>
 
       <Link href="https://github.com/lauslim12/expert-systems" isExternal>
-        GitHub
+        {t('footer.github')}
       </Link>
 
       <Text as="button" onClick={setOpenAbout}>
-        About
+        {t('footer.about')}
       </Text>
 
       <Text as="button" onClick={setOpenDisclaimer}>
-        Terms
+        {t('footer.terms')}
+      </Text>
+
+      <Text
+        as="button"
+        onClick={() => {
+          if (i18n.language === 'id') {
+            i18n.changeLanguage('en');
+            return;
+          }
+
+          i18n.changeLanguage('id');
+        }}
+      >
+        Lang
       </Text>
     </HStack>
   );

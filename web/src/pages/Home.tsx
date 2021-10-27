@@ -1,5 +1,6 @@
 import { Flex, VStack } from '@chakra-ui/react';
 import { lazy, memo, Suspense, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import Footer from '../components/Footer';
 import DisclaimerModal from '../components/Modal/DisclaimerModal';
@@ -18,6 +19,7 @@ const AboutModal = lazy(() => import('../components/Modal/AboutModal'));
 const Home = () => {
   const [openAbout, setOpenAbout] = useState(false);
   const [openDisclaimer, setOpenDisclaimer] = useState(true);
+  const { t } = useTranslation();
 
   return (
     <>
@@ -33,7 +35,7 @@ const Home = () => {
       <Flex h="100vh" direction="column" maxW="1200px" mx="auto">
         <VStack as="main" p={3} spacing={5} flex={1} mt={5} mb={5}>
           <VStack as="header" w="full">
-            <p>Hello, Expert Systems!</p>
+            <p>{t('heading.title')}</p>
           </VStack>
 
           <Tuberculosis />

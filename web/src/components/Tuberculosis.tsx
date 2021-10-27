@@ -1,5 +1,6 @@
 import { Button, Text, useToast, VStack } from '@chakra-ui/react';
 import { lazy, memo, Suspense, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import type Request from '../types/Request';
 import type Response from '../types/Response';
@@ -36,6 +37,7 @@ const Tuberculosis = () => {
   const [swollen, setSwollen] = useState(null as StateCertaintyWeight);
   const [lossApetite, setLossApetite] = useState(null as StateCertaintyWeight);
   const toast = useToast();
+  const { t, i18n } = useTranslation();
 
   const submitResult = () => {
     // Not '!' as 0 equals false as well. We need that literal 0 value.
@@ -54,14 +56,12 @@ const Tuberculosis = () => {
       swollen === null ||
       lossApetite === null
     ) {
-      FailedToast(
-        toast,
-        'Please input all of the information before continuing!'
-      );
+      FailedToast(toast, t('general.notComplete'));
       return;
     }
 
     const requestBody: Request = {
+      locale: i18n.language as 'en' | 'id',
       symptoms: [
         {
           symptomId: 'S1',
@@ -140,83 +140,83 @@ const Tuberculosis = () => {
         <AnswerInput
           state={fever}
           setState={setFever}
-          title="I have a fever for two weeks or more"
+          title={t('tbSymptoms.symptomOne')}
         />
 
         <AnswerInput
           state={coughBlood}
           setState={setCoughBlood}
-          title="I cough blood"
+          title={t('tbSymptoms.symptomTwo')}
         />
 
         <AnswerInput
           state={spBloody}
           setState={setSpBloody}
-          title="My sputum is mixed with blood"
+          title={t('tbSymptoms.symptomThree')}
         />
 
         <AnswerInput
           state={nightSweat}
           setState={setNightSweat}
-          title="I sweat at night"
+          title={t('tbSymptoms.symptomFour')}
         />
 
         <AnswerInput
           state={chestPain}
           setState={setChestPain}
-          title="I suffer from chest pain constantly"
+          title={t('tbSymptoms.symptomFive')}
         />
 
         <AnswerInput
           state={backPain}
           setState={setBackPain}
-          title="I suffer from back pain constantly"
+          title={t('tbSymptoms.symptomSix')}
         />
 
         <AnswerInput
           state={shortBreath}
           setState={setShortBreath}
-          title="I feel a shortness of breath"
+          title={t('tbSymptoms.symptomSeven')}
         />
 
         <AnswerInput
           state={weightLoss}
           setState={setWeightLoss}
-          title="I have experienced weight loss"
+          title={t('tbSymptoms.symptomEight')}
         />
 
         <AnswerInput
           state={bodyTired}
           setState={setBodyTired}
-          title="My body feels like always tired"
+          title={t('tbSymptoms.symptomNine')}
         />
 
         <AnswerInput
           state={lumps}
           setState={setLumps}
-          title="Around my armpits and neck, lumps appeared"
+          title={t('tbSymptoms.symptomTen')}
         />
 
         <AnswerInput
           state={coughing}
           setState={setCoughing}
-          title="I cough continously from two weeks to four weeks"
+          title={t('tbSymptoms.symptomEleven')}
         />
 
         <AnswerInput
           state={swollen}
           setState={setSwollen}
-          title="My lymph nodes are swollen"
+          title={t('tbSymptoms.symptomTwelve')}
         />
 
         <AnswerInput
           state={lossApetite}
           setState={setLossApetite}
-          title="I experienced a loss of apetite"
+          title={t('tbSymptoms.symptomThirteen')}
         />
 
         <VStack w="full" align="start">
-          <Text fontWeight="bold">Analyze answers</Text>
+          <Text fontWeight="bold">{t('general.analyze')}</Text>
 
           <Button
             colorScheme="pink"
@@ -225,7 +225,7 @@ const Tuberculosis = () => {
             onClick={submitResult}
             isLoading={isLoading}
           >
-            Results
+            {t('general.results')}
           </Button>
         </VStack>
       </VStack>

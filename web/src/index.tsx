@@ -1,4 +1,5 @@
 import 'focus-visible/dist/focus-visible';
+import './utils/i18n';
 
 import { ChakraProvider, ColorModeScript, extendTheme } from '@chakra-ui/react';
 import React from 'react';

@@ -1,0 +1,86 @@
+{
+  "heading": {
+    "title": "Halo, Expert Systems!"
+  },
+  "general": {
+    "darken": "Gelapkan",
+    "lighten": "Terangkan",
+    "analyze": "Analisis jawaban",
+    "results": "Hasil",
+    "notComplete": "Mohon isi seluruh informasi terlebih dahulu!"
+  },
+  "notFound": {
+    "title": "Tidak ditemukan!",
+    "message": "Halaman yang Anda cari mungkin (tidak) ada di masa lampau, tetapi sekarang sudah pasti tidak ada.",
+    "back": "Kembali ke Home"
+  },
+  "tbSymptoms": {
+    "symptomOne": "Saya menderita demam untuk dua minggu atau lebih",
+    "symptomTwo": "Saya batuk darah",
+    "symptomThree": "Lendir saya bercampur dengan darah",
+    "symptomFour": "Saya berkeringat pada malam hari",
+    "symptomFive": "Saya menderita sakit dada secara kontinyu",
+    "symptomSix": "Saya menderita sakit punggung secara kontinyu",
+    "symptomSeven": "Saya merasa sulit bernafas",
+    "symptomEight": "Saya mengalami penurunan berat badan",
+    "symptomNine": "Badan saya selalu terasa lelah",
+    "symptomTen": "Di sekitar ketiak dan leher, muncul gumpalan",
+    "symptomEleven": "Saya batuk secara terus menerus dari dua hingga empat minggu",
+    "symptomTwelve": "Nodus limfa saya berkembang",
+    "symptomThirteen": "Saya mengalami penurunan nafsu makan"
+  },
+  "menu": {
+    "doNotFeelSo": "Tidak pernah merasa",
+    "sometimesFeelSo": "Terkadang merasa",
+    "oftenFeelSo": "Sering merasa",
+    "stronglyFeelSo": "Selalu merasa"
+  },
+  "disclaimer": {
+    "title": "Pernyataan & Kebijakan",
+    "alert": "Mohon membaca ini sebelum menggunakan aplikasi!",
+    "initial": "Meskipun aplikasi ini dibuat berdasarkan data yang sudah ada dan mendapatkan opini dari pakar yang bersangkutan, aplikasi ini masih bukan merupakan cara yang benar untuk mendiagnosis diri Anda. Anda dapat menggunakan aplikasi ini seperti pertolongan pertama apabila Anda perlu mengetahui kondisi Anda secepatnya. Aplikasi ini hanya dibuat untuk kepentingan penelitian dan pendidikan.",
+    "privacy": "Dalam situs ini, kami menggunakan teknologi cookie untuk menyimpan preferensi color mode milik Anda. Kami tidak menggunakan data Anda untuk kepentingan apapun. Untuk lisensi, seluruh penggunaan telah disitasi secara sesuai, baik di dalam aplikasi ini maupun dalam repositori kode aplikasi ini.",
+    "warning": "Aplikasi ini BUKAN untuk diinterpretasikan atau dipahami sebagai nasihat medis yang resmi. Konsultasi dengan dokter atau tenaga kesehatan di daerah Anda apabila Anda ingin mendiagnosis diri Anda secara lebih detail yang lebih sesuai dengan kondisi kesehatan Anda. Gunakan alat ini secara bijaksana. Apabila Anda membutuhkan nasihat medis khusus untuk kondisi kesehatan Anda secara spesifik dan terspesialisasi, JANGAN MENGGUNAKAN APLIKASI INI SAMA SEKALI.",
+    "license": "Perangkat lunak ini disediakan dengan sebagaimana adanya, tanpa garansi apapun, secara langsung maupun tidak langsung, termasuk tetapi tidak terbatas pada garansi penjualan dagang, kegunaan untuk tujuan tertentu, dan bukan merupakan pelanggaran. Tidak ada dalam segala jenis kegiatan atau aktivitas manapun penulis atau pemegang hak cipta dapat dituntut atau dapat dimintai pertanggungjawaban atas klaim apa pun, kerusakan, atau kewajiban lainnya, baik melalui aksi dalam kontrak tertulis maupun tidak tertulis, yang berkaitan dengan penggunaan perangkat lunak ini, baik secara langsung maupun tidak langsung.",
+    "agreement": "Mohon centang dua buah boks di bawah ini sebagai tanda persetujuan Anda.",
+    "understand": "Saya mengerti dan menyetujui tentang penggunaan di atas.",
+    "responsibility": "Seluruh penggunaan aplikasi ini merupakan tanggung jawab saya sendiri.",
+    "close": "Saya mengerti."
+  },
+  "about": {
+    "title": "Tentang",
+    "alert": "Tentang aplikasi",
+    "content": "Pre-memory",
+    "close": "Oke!"
+  },
+  "inference": {
+    "title": "Hasil Inferensi",
+    "alert": "Hasil Anda adalah sebagai berikut.",
+    "verdict": "Kondisi",
+    "verdictTB": "Dari analisis dan sistem kami, diduga Anda menderita penyakit TB.",
+    "verdictNoTB": "Dari analisis dan sistem kami, diduga Anda tidak menderita penyakit TB.",
+    "verdictCalculation": "Kalkulasi dilakukan dengan metode Forward Chaining dan mendapatkan hasil seperti di atas.",
+    "probability": "Probabilitas",
+    "probabilityResult": "Angka probabilitas Anda terinfeksi TB adalah {{probability}}%.",
+    "probabilityCalculation": "Kalkulasi dilakukan dengan metode Certainty Factor dan mendapatkan hasil seperti di atas.",
+    "suggestion": "Saran",
+    "suggestionOkay": "Menimbang dari nilai probabilitas, Anda tidak ada risiko untuk menderita TB. Namun, akan selalu baik bagi Anda untuk pergi dan mendapatkan konsultasi kesehatan dari dokter atau tenaga kesehatan lainnya. Tetap jaga kesehatan dan keamanan!",
+    "suggestionVisit": "Menimbang dari nilai probabilitas, Anda memilik risiko ringan untuk menderita TB. Direkomendasikan bagi Anda untuk pergi dan mendapatkan konsultasi medis dari dokter ataupun tenanga kesehatan lainnya. Diharapkan, Anda tidak apa-apa. Tetap jaga kesehatan dan keamanan!",
+    "suggestionDangerous": "Dari nilai probabilitas, Anda memiliki risiko tinggi untuk menderita TB sekarang. Sangat direkomendasikan bagi Anda untuk langsung pergi ke rumah sakit dan mendapatkan pemeriksaan medis dengan dokter. Mohon jaga kesehatan dan keamanan!",
+    "information": "Informasi",
+    "prevention": "Pencegahan",
+    "treatment": "Perawatan",
+    "sources": "Sumber",
+    "sourcesBeginning": "Sumber-sumber data untuk penyakit didapatkan melalui sumber berikut:",
+    "json": "JSON",
+    "jsonBeginning": "Data mentahan untuk yang berminat",
+    "showCode": "Lihat data",
+    "hideCode": "Sembunyikan data",
+    "close": "Tutup"
+  },
+  "footer": {
+    "github": "GitHub",
+    "about": "Tentang",
+    "terms": "Kebijakan"
+  }
+}
