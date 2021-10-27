@@ -37,7 +37,7 @@ const Tuberculosis = () => {
   const [swollen, setSwollen] = useState(null as StateCertaintyWeight);
   const [lossApetite, setLossApetite] = useState(null as StateCertaintyWeight);
   const toast = useToast();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const submitResult = () => {
     // Not '!' as 0 equals false as well. We need that literal 0 value.
@@ -61,6 +61,7 @@ const Tuberculosis = () => {
     }
 
     const requestBody: Request = {
+      locale: i18n.language as 'en' | 'id',
       symptoms: [
         {
           symptomId: 'S1',
