@@ -13,6 +13,7 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import { memo, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { AiFillCheckCircle } from 'react-icons/ai';
 
 /**
@@ -33,6 +34,7 @@ const DisclaimerModal = ({ isOpen, onClose }: Props) => {
   const [isAgreeWithTerms, setIsAgreeWithTerms] = useState(false);
   const [isResponsible, setIsResponsible] = useState(false);
   const focusRef = useRef(null);
+  const { t } = useTranslation();
 
   return (
     <Modal
@@ -46,56 +48,21 @@ const DisclaimerModal = ({ isOpen, onClose }: Props) => {
       <ModalOverlay />
 
       <ModalContent ref={focusRef}>
-        <ModalHeader>Disclaimer & Terms</ModalHeader>
+        <ModalHeader>{t('disclaimer.title')}</ModalHeader>
 
         <ModalBody>
           <VStack as="article" align="stretch">
             <Alert as="section" status="info" variant="left-accent">
               <AlertIcon />
-              Please read the terms and conditions before using this
-              application!
+              {t('disclaimer.alert')}
             </Alert>
 
             <VStack as="section" align="start" spacing={4}>
-              <Text>
-                Even though this application is made based on available data and
-                the opinion of the pertaining experts, this application is still
-                not a fully correct way to diagnose yourself with. You can use
-                this application as a first-aid kind of situation if you need to
-                get to know about your condition as fast as possible. This
-                application is made for research and educational purposes only.
-              </Text>
-
-              <Text>
-                In this website, we use cookies in order to store your color
-                mode preferences. We do not use your data for anything. As for
-                licenses, all of the usages are cited properly, either in this
-                app or in the repository.
-              </Text>
-
-              <Text as="strong">
-                This application IS NOT to be construed as a complete medical
-                advice. Consult a medical expert in your area if you need to
-                diagnose yourself in a more detailed way that is more catered to
-                your needs. Use this tool with responsibility. If you need a
-                specialized medical advice for your condition, DO NOT USE THIS
-                APPLICATION.
-              </Text>
-
-              <Text as="strong">
-                This software is provided "as is", without warranty of any kind,
-                express or implied, including but not limited to the warranties
-                of merchantability, fitness for a particular purpose and
-                noninfringement. In no event shall the authors or copyright
-                holders be liable for any claim, damages or other liability,
-                whether in an action of contract, tort or otherwise, arising
-                from, out of or in connection with the software or the use or
-                other dealings in the software.
-              </Text>
-
-              <Text>
-                Please check below boxes to continue with this application.
-              </Text>
+              <Text>{t('disclaimer.initial')}</Text>
+              <Text>{t('disclaimer.privacy')}</Text>
+              <Text as="strong">{t('disclaimer.warning')}</Text>
+              <Text as="strong">{t('disclaimer.license')}</Text>
+              <Text>{t('disclaimer.agreement')}</Text>
             </VStack>
 
             <VStack as="section" align="start">
@@ -106,7 +73,7 @@ const DisclaimerModal = ({ isOpen, onClose }: Props) => {
                   setIsAgreeWithTerms(checked)
                 }
               >
-                I understand the terms written above.
+                {t('disclaimer.understand')}
               </Checkbox>
 
               <Checkbox
@@ -116,7 +83,7 @@ const DisclaimerModal = ({ isOpen, onClose }: Props) => {
                   setIsResponsible(checked)
                 }
               >
-                All of the usage is my own responsibility.
+                {t('disclaimer.responsibility')}
               </Checkbox>
             </VStack>
           </VStack>
@@ -129,7 +96,7 @@ const DisclaimerModal = ({ isOpen, onClose }: Props) => {
             isDisabled={!isResponsible || !isAgreeWithTerms}
             onClick={onClose}
           >
-            I understand.
+            {t('disclaimer.close')}
           </Button>
         </ModalFooter>
       </ModalContent>

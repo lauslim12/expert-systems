@@ -20,6 +20,7 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import { memo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   AiFillInfoCircle,
   AiOutlineClose,
@@ -38,43 +39,6 @@ type Props = {
 };
 
 /**
- * Renders the suggestion of what the user should do based on their probability rate.
- *
- * @param probability - The probability of having TB
- * @returns JSX Element
- */
-const renderSuggestion = (probability: number) => {
-  if (probability <= 30) {
-    return (
-      <Text>
-        Judging from your probability rate, you are not at risk of getting TB.
-        However, it's always nice to go to have a medical check up with a doctor
-        or any authorized medical personnel. Stay safe and healthy!
-      </Text>
-    );
-  }
-
-  if (probability > 30 && probability < 70) {
-    return (
-      <Text>
-        Judging from your probability rate, you are at a mild risk of getting
-        TB. It is recommended for you to go and have a medical check up with a
-        doctor as soon as possible. Hopefully, you are not at risk. Stay safe
-        and healthy!
-      </Text>
-    );
-  }
-
-  return (
-    <Text>
-      From your probability rate, you have a high chance of having TB right now.
-      It is absolutely recommended for you to go to a hospital and have a
-      medical check up with a doctor right now. Please stay safe and healthy!
-    </Text>
-  );
-};
-
-/**
  * This modal will render the results of the inference.
  *
  * @param param - ChakraUI's modal props, and the API response
@@ -82,6 +46,25 @@ const renderSuggestion = (probability: number) => {
  */
 const ResultModal = ({ isOpen, onClose, results }: Props) => {
   const [showRawData, setShowRawData] = useState(false);
+  const { t } = useTranslation();
+
+  /**
+   * Renders the suggestion of what the user should do based on their probability rate.
+   *
+   * @param probability - The probability of having TB
+   * @returns JSX Element
+   */
+  const renderSuggestion = (probability: number) => {
+    if (probability <= 30) {
+      return <Text>{t('inference.suggestionOkay')}</Text>;
+    }
+
+    if (probability > 30 && probability < 70) {
+      return <Text>{t('inference.suggestionVisit')}</Text>;
+    }
+
+    return <Text>{t('inference.suggestionDangerous')}</Text>;
+  };
 
   return (
     <Modal
@@ -95,14 +78,14 @@ const ResultModal = ({ isOpen, onClose, results }: Props) => {
       <ModalOverlay />
 
       <ModalContent>
-        <ModalHeader>Inference Result</ModalHeader>
+        <ModalHeader>{t('inference.title')}</ModalHeader>
         <ModalCloseButton />
 
         <ModalBody>
           <VStack as="article" align="stretch">
             <Alert as="section" status="success" variant="solid">
               <AlertIcon />
-              Your results are as follows.
+              {t('inference.alert')}
             </Alert>
 
             <VStack as="section" align="start" spacing={4}>
@@ -110,7 +93,7 @@ const ResultModal = ({ isOpen, onClose, results }: Props) => {
                 <>
                   <VStack align="start">
                     <Text fontSize="lg" fontWeight="bold">
-                      Verdict
+                      {t('inference.verdict')}
                     </Text>
 
                     <Text
@@ -122,36 +105,32 @@ const ResultModal = ({ isOpen, onClose, results }: Props) => {
                       fontWeight="bold"
                     >
                       {results.data.verdict === true
-                        ? 'From our analysis and our system, you may have been infected by TB.'
-                        : 'From our analysis and our system, you have not been infected by TB.'}
+                        ? t('inference.verdictNoTB')
+                        : t('inference.verdictTB')}
                     </Text>
 
-                    <Text>
-                      The calculation was done by using the Forward Chaining
-                      Algorithm and provides above result.
-                    </Text>
+                    <Text>{t('inference.verdictCalculation')}</Text>
                   </VStack>
 
                   <VStack align="start">
                     <Text fontSize="lg" fontWeight="bold">
-                      Probability
+                      {t('inference.probability')}
                     </Text>
 
                     <Text fontWeight="bold" color="pink.400">
-                      The human-readable probability of you being infected with
-                      TB stands at {(results.data.probability * 100).toFixed(2)}
-                      %.
+                      {t('inference.probabilityResult', {
+                        probability: (results.data.probability * 100).toFixed(
+                          2
+                        ),
+                      })}
                     </Text>
 
-                    <Text>
-                      The calculation was done by using the Certainty Factor
-                      Algorithm and provides above result.
-                    </Text>
+                    <Text>{t('inference.probabilityCalculation')}</Text>
                   </VStack>
 
                   <VStack align="start">
                     <Text fontSize="lg" fontWeight="bold">
-                      Suggestion
+                      {t('inference.suggestion')}
                     </Text>
 
                     {renderSuggestion(
@@ -161,7 +140,7 @@ const ResultModal = ({ isOpen, onClose, results }: Props) => {
 
                   <VStack align="start">
                     <Text fontSize="lg" fontWeight="bold">
-                      Information
+                      {t('inference.information')}
                     </Text>
 
                     <Text>{results.data.disease.description}</Text>
@@ -169,7 +148,7 @@ const ResultModal = ({ isOpen, onClose, results }: Props) => {
 
                   <VStack align="start">
                     <Text fontSize="lg" fontWeight="bold">
-                      Prevention
+                      {t('inference.prevention')}
                     </Text>
 
                     <Text>{results.data.disease.prevention}</Text>
@@ -177,7 +156,7 @@ const ResultModal = ({ isOpen, onClose, results }: Props) => {
 
                   <VStack align="start">
                     <Text fontSize="lg" fontWeight="bold">
-                      Treatment
+                      {t('inference.treatment')}
                     </Text>
 
                     <Text>{results.data.disease.treatment}</Text>
@@ -185,13 +164,10 @@ const ResultModal = ({ isOpen, onClose, results }: Props) => {
 
                   <VStack align="start">
                     <Text fontSize="lg" fontWeight="bold">
-                      Sources
+                      {t('inference.sources')}
                     </Text>
 
-                    <Text>
-                      The sources of the data regarding of the disease are taken
-                      from the following sources:
-                    </Text>
+                    <Text>{t('inference.sourcesBeginning')}</Text>
 
                     <List>
                       {results.data.disease.source.map((source) => (
@@ -213,10 +189,10 @@ const ResultModal = ({ isOpen, onClose, results }: Props) => {
                   {showRawData && (
                     <VStack align="start" w="full">
                       <Text fontSize="lg" fontWeight="bold">
-                        JSON
+                        {t('inference.json')}
                       </Text>
 
-                      <Text>Raw data for those interested.</Text>
+                      <Text>{t('inference.jsonBeginning')}</Text>
 
                       <chakra.code w="full">
                         <Textarea
@@ -241,7 +217,9 @@ const ResultModal = ({ isOpen, onClose, results }: Props) => {
               leftIcon={<AiOutlineCode />}
               onClick={() => setShowRawData(!showRawData)}
             >
-              {showRawData === true ? 'Hide raw data' : 'Show raw data'}
+              {showRawData === true
+                ? t('inference.hideCode')
+                : t('inference.showCode')}
             </Button>
 
             <Button
@@ -249,7 +227,7 @@ const ResultModal = ({ isOpen, onClose, results }: Props) => {
               leftIcon={<AiOutlineClose />}
               onClick={onClose}
             >
-              Close
+              {t('inference.close')}
             </Button>
           </ButtonGroup>
         </ModalFooter>

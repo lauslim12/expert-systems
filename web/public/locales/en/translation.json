@@ -6,7 +6,13 @@
     "darken": "Darken",
     "lighten": "Lighten",
     "analyze": "Analyze answers",
-    "results": "Results"
+    "results": "Results",
+    "notComplete": "Please fill all information before continuing!"
+  },
+  "notFound": {
+    "title": "",
+    "message": "The page you are looking for may or may not have existed in the past, but it certainly doesn't anymore.",
+    "back": "Back to Home"
   },
   "tbSymptoms": {
     "symptomOne": "I have a fever for two weeks or more.",
@@ -38,26 +44,39 @@
     "license": "This software is provided \"as is\", without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose and noninfringement. In no event shall the authors or copyright holders be liable for any claim, damages or other liability, whether in an action of contract, tort or otherwise, arising from, out of or in connection with the software or the use or other dealings in the software.",
     "agreement": "Please check below boxes to continue with this application.",
     "understand": "I understand the terms written above.",
-    "responsibility": "All of the usage is my own responsibility."
+    "responsibility": "All of the usage is my own responsibility.",
+    "close": "I understand."
   },
   "about": {
     "title": "About",
     "alert": "About the app",
-    "content": "Pre-memory"
+    "content": "Pre-memory",
+    "close": "Okay!"
   },
   "inference": {
     "title": "Inference Result",
     "alert": "Your results are as follows.",
     "verdict": "Verdict",
+    "verdictTB": "From our analysis and our system, you may have been infected by TB.",
+    "verdictNoTB": "From our analysis and our system, you have not been infected by TB.",
     "verdictCalculation": "The calculation was done by using the Forward Chaining Algorithm and provides above result.",
     "probability": "Probability",
+    "probabilityResult": "The human-readable probability of you being infected with TB stands at {{probability}}%.",
     "probabilityCalculation": "The calculation was done by using the Certainty Factor Algorithm and provides above result.",
     "suggestion": "Suggestion",
+    "suggestionOkay": "Judging from your probability rate, you are not at risk of getting TB. However, it's always nice to go to have a medical check up with a doctor or any authorized medical personnel. Stay safe and healthy!",
+    "suggestionVisit": "Judging from your probability rate, you are at a mild risk of getting TB. It is recommended for you to go and have a medical check up with a doctor as soon as possible. Hopefully, you are not at risk. Stay safe and healthy!",
+    "suggestionDangerous": "From your probability rate, you have a high chance of having TB right now. It is absolutely recommended for you to go to a hospital and have a medical check up with a doctor right now. Please stay safe and healthy!",
     "information": "Information",
     "prevention": "Prevention",
     "treatment": "Treatment",
     "sources": "Sources",
-    "sourcesBeginning": "The sources of the data regarding of the disease are taken from the following sources:"
+    "sourcesBeginning": "The sources of the data regarding of the disease are taken from the following sources:",
+    "json": "JSON",
+    "jsonBeginning": "Raw data for those interested.",
+    "showCode": "Show raw data",
+    "hideCode": "Hide raw data",
+    "close": "Close"
   },
   "footer": {
     "github": "GitHub",

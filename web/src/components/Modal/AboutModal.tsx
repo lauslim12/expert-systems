@@ -13,6 +13,7 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import { memo } from 'react';
+import { useTranslation } from 'react-i18next';
 
 /**
  * Accepts ChakraUI's modal props.
@@ -28,41 +29,45 @@ type Props = {
  * @param param - ChakraUI's modal props
  * @returns React Functional Component
  */
-const AboutModal = ({ isOpen, onClose }: Props) => (
-  <Modal
-    isOpen={isOpen}
-    onClose={onClose}
-    size="5xl"
-    motionPreset="slideInBottom"
-    closeOnEsc={false}
-    closeOnOverlayClick={false}
-  >
-    <ModalOverlay />
+const AboutModal = ({ isOpen, onClose }: Props) => {
+  const { t } = useTranslation();
 
-    <ModalContent>
-      <ModalHeader>About</ModalHeader>
-      <ModalCloseButton />
+  return (
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      size="5xl"
+      motionPreset="slideInBottom"
+      closeOnEsc={false}
+      closeOnOverlayClick={false}
+    >
+      <ModalOverlay />
 
-      <ModalBody>
-        <VStack as="article" align="stretch">
-          <Alert as="section" status="success" variant="left-accent">
-            <AlertIcon />
-            About the app
-          </Alert>
+      <ModalContent>
+        <ModalHeader>{t('about.title')}</ModalHeader>
+        <ModalCloseButton />
 
-          <VStack as="section" align="start" spacing={4}>
-            <Text>Pre-memory.</Text>
+        <ModalBody>
+          <VStack as="article" align="stretch">
+            <Alert as="section" status="success" variant="left-accent">
+              <AlertIcon />
+              {t('about.alert')}
+            </Alert>
+
+            <VStack as="section" align="start" spacing={4}>
+              <Text>{t('about.content')}</Text>
+            </VStack>
           </VStack>
-        </VStack>
-      </ModalBody>
+        </ModalBody>
 
-      <ModalFooter>
-        <Button colorScheme="green" onClick={onClose}>
-          Okay!
-        </Button>
-      </ModalFooter>
-    </ModalContent>
-  </Modal>
-);
+        <ModalFooter>
+          <Button colorScheme="green" onClick={onClose}>
+            {t('about.close')}
+          </Button>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
+  );
+};
 
 export default memo(AboutModal);
