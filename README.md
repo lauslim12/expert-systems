@@ -11,6 +11,7 @@ This research is still in progress and not completed yet.
 - Responsive web design with complete `a11y` support with React and TypeScript.
 - Built with performance in mind and deployed natively on a Cloud Platform.
 - Fully unit-tested with 100% code coverage.
+- Supports `i18n`, with `en` and `id` as the internationalized languages.
 - Simple, intuitive UI for a good user experience (includes 404 page and dark mode).
 
 ## Requirements

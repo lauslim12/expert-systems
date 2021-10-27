@@ -61,6 +61,7 @@ const Tuberculosis = () => {
     }
 
     const requestBody: Request = {
+      diseaseId: 'D01',
       locale: i18n.language as 'en' | 'id',
       symptoms: [
         {
