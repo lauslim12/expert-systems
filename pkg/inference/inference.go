@@ -2,46 +2,46 @@ package inference
 
 // Disease is the representation of the diseases data in this Expert System.
 type Disease struct {
-	ID          string          `json:"id"`
-	Name        string          `json:"name"`
-	Description string          `json:"description"`
-	Treatment   string          `json:"treatment"`
-	Prevention  string          `json:"prevention"`
-	Source      []SourceAndLink `json:"source"`
-	Symptoms    []Symptom       `json:"symptoms"`
+	ID          string          `json:"id"`          // Disease ID
+	Name        string          `json:"name"`        // Name of the disease
+	Description string          `json:"description"` // Description of the disease
+	Treatment   string          `json:"treatment"`   // Treatment of the disease
+	Prevention  string          `json:"prevention"`  // Prevention of the disease
+	Source      []SourceAndLink `json:"source"`      // Sources of information regarding the disease
+	Symptoms    []Symptom       `json:"symptoms"`    // Valid symptoms of the disease
 }
 
 // Inferred is the object that will be returned after all of the calculations.
 type Inferred struct {
-	Verdict     bool    `json:"verdict"`
-	Probability float64 `json:"probability"`
-	Disease     Disease `json:"disease"`
+	Verdict     bool    `json:"verdict"`     // Verdict whether one is infected or not
+	Probability float64 `json:"probability"` // Probability of infection
+	Disease     Disease `json:"disease"`     // Disease data
 }
 
 // SymptomAndWeight is a struct representative of the members of 'symptoms' array in 'Input' struct.
 type SymptomAndWeight struct {
-	SymptomID string  `json:"symptomId"`
-	Weight    float64 `json:"weight"`
+	SymptomID string  `json:"symptomId"` // ID of the relevant symptom
+	Weight    float64 `json:"weight"`    // User-confidence weights for the Certainty Factor Algorithm
 }
 
 // Input is used as a representative of a user's input.
 type Input struct {
-	DiseaseID string             `json:"diseaseId"`
-	Locale    string             `json:"locale"`
-	Symptoms  []SymptomAndWeight `json:"symptoms"`
+	DiseaseID string             `json:"diseaseId"` // ID of the relevant disease
+	Locale    string             `json:"locale"`    // Locale of the required information (can be 'en' or 'id)
+	Symptoms  []SymptomAndWeight `json:"symptoms"`  // Symptoms and weights
 }
 
 // SourceAndLink represents the source name and its link for the information regarding a disease.
 type SourceAndLink struct {
-	Name string `json:"name"`
-	Link string `json:"link"`
+	Name string `json:"name"` // Name of the website
+	Link string `json:"link"` // Link to the website
 }
 
 // Symptom is an object that represents the symptoms data in this library.
 type Symptom struct {
-	ID     string  `json:"id"`
-	Name   string  `json:"name"`
-	Weight float64 `json:"weight"`
+	ID     string  `json:"id"`     // ID of the symptom
+	Name   string  `json:"name"`   // Name of the symptom
+	Weight float64 `json:"weight"` // Expert-calculated weight from data and the relevant experts' opinion
 }
 
 // NewInput creates a new input instance that's already validated.
