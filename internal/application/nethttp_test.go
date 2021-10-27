@@ -66,7 +66,7 @@ func TestGeneralHandler(t *testing.T) {
 		{
 			name:           "test_input",
 			method:         http.MethodPost,
-			input:          `{"symptoms":[{"symptomId":"S1","weight":0.2},{"symptomId":"S2","weight":0.2},{"symptomId":"S3","weight":0.2},{"symptomId":"S4","weight":0.4},{"symptomId":"S5","weight":0.2},{"symptomId":"S6","weight":0.4},{"symptomId":"S7","weight":0.8},{"symptomId":"S8","weight":0.2},{"symptomId":"S9","weight":0.2},{"symptomId":"S10","weight":0.4},{"symptomId":"S11","weight":0.2},{"symptomId":"S12","weight":0.2},{"symptomId":"S13","weight":1}]}`,
+			input:          `{"diseaseId":"D01","locale":"en","symptoms":[{"symptomId":"S1","weight":0.2},{"symptomId":"S2","weight":0.2},{"symptomId":"S3","weight":0.2},{"symptomId":"S4","weight":0.4},{"symptomId":"S5","weight":0.2},{"symptomId":"S6","weight":0.4},{"symptomId":"S7","weight":0.8},{"symptomId":"S8","weight":0.2},{"symptomId":"S9","weight":0.2},{"symptomId":"S10","weight":0.4},{"symptomId":"S11","weight":0.2},{"symptomId":"S12","weight":0.2},{"symptomId":"S13","weight":1}]}`,
 			route:          "/api/v1",
 			expectedStatus: http.StatusOK,
 		},
