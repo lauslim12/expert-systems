@@ -27,7 +27,8 @@ func getTBPrevention(locale string) string {
 	return "You can perform several precautions by providing good ventilation, natural light, and keeping everything clean. It is recommended to take vaccinations of TB as well. Vaccinations help you to keep your immune system in prime condition, thus allowing you to resist the virus for a longer time (some up to 15 years). Depending on some external factors, some people are more at risk for being exposed into developing the TB disease."
 }
 
-// All diseases that is in this expert system.
+// All diseases that are in this expert system.
+// Data is processed from https://www.kaggle.com/victorcaelina/tuberculosis-symptoms.
 func getDiseases(locale string) []Disease {
 	diseases := []Disease{
 		{
@@ -54,136 +55,75 @@ func getDiseases(locale string) []Disease {
 					Link: "https://www.cdc.gov/tb/topic/basics/tbprevention.htm",
 				},
 			},
-			Symptoms: []SymptomAndWeight{
+			Symptoms: []Symptom{
 				{
-					SymptomID: "S1",
-					Weight:    0.513,
+					ID:     "S1",
+					Name:   "Fever for two weeks or more",
+					Weight: 0.513,
 				},
 				{
-					SymptomID: "S2",
-					Weight:    0.475,
+					ID:     "S2",
+					Name:   "Coughing blood",
+					Weight: 0.475,
 				},
 				{
-					SymptomID: "S3",
-					Weight:    0.519,
+					ID:     "S3",
+					Name:   "Sputum mixed with blood",
+					Weight: 0.519,
 				},
 				{
-					SymptomID: "S4",
-					Weight:    0.514,
+					ID:     "S4",
+					Name:   "Night sweats",
+					Weight: 0.514,
 				},
 				{
-					SymptomID: "S5",
-					Weight:    0.494,
+					ID:     "S5",
+					Name:   "Chest pain",
+					Weight: 0.494,
 				},
 				{
-					SymptomID: "S6",
-					Weight:    0.511,
+					ID:     "S6",
+					Name:   "Back pain in certain parts",
+					Weight: 0.511,
 				},
 				{
-					SymptomID: "S7",
-					Weight:    0.487,
+					ID:     "S7",
+					Name:   "Shortness of breath",
+					Weight: 0.487,
 				},
 				{
-					SymptomID: "S8",
-					Weight:    0.521,
+					ID:     "S8",
+					Name:   "Weight loss",
+					Weight: 0.521,
 				},
 				{
-					SymptomID: "S9",
-					Weight:    0.496,
+					ID:     "S9",
+					Name:   "Body feels tired",
+					Weight: 0.496,
 				},
 				{
-					SymptomID: "S10",
-					Weight:    0.484,
+					ID:     "S10",
+					Name:   "Lumps that appear around the armpits and neck",
+					Weight: 0.484,
 				},
 				{
-					SymptomID: "S11",
-					Weight:    0.493,
+					ID:     "S11",
+					Name:   "Cough and phlegm continuously for two weeks to four weeks",
+					Weight: 0.493,
 				},
 				{
-					SymptomID: "S12",
-					Weight:    0.478,
+					ID:     "S12",
+					Name:   "Swollen lymph nodes",
+					Weight: 0.478,
 				},
 				{
-					SymptomID: "S13",
-					Weight:    0.488,
+					ID:     "S13",
+					Name:   "Loss of apetite",
+					Weight: 0.488,
 				},
 			},
 		},
 	}
 
 	return diseases
-}
-
-// All symptoms that is here in the expert system.
-// Dataset is processed further from: https://www.kaggle.com/victorcaelina/tuberculosis-symptoms.
-func getSymptoms() []Symptom {
-	symptoms := []Symptom{
-		{
-			ID:     "S1",
-			Name:   "Fever for two weeks or more",
-			Weight: 0.513,
-		},
-		{
-			ID:     "S2",
-			Name:   "Coughing blood",
-			Weight: 0.475,
-		},
-		{
-			ID:     "S3",
-			Name:   "Sputum mixed with blood",
-			Weight: 0.519,
-		},
-		{
-			ID:     "S4",
-			Name:   "Night sweats",
-			Weight: 0.514,
-		},
-		{
-			ID:     "S5",
-			Name:   "Chest pain",
-			Weight: 0.494,
-		},
-		{
-			ID:     "S6",
-			Name:   "Back pain in certain parts",
-			Weight: 0.511,
-		},
-		{
-			ID:     "S7",
-			Name:   "Shortness of breath",
-			Weight: 0.487,
-		},
-		{
-			ID:     "S8",
-			Name:   "Weight loss",
-			Weight: 0.521,
-		},
-		{
-			ID:     "S9",
-			Name:   "Body feels tired",
-			Weight: 0.496,
-		},
-		{
-			ID:     "S10",
-			Name:   "Lumps that appear around the armpits and neck",
-			Weight: 0.484,
-		},
-		{
-			ID:     "S11",
-			Name:   "Cough and phlegm continuously for two weeks to four weeks",
-			Weight: 0.493,
-		},
-		{
-			ID:     "S12",
-			Name:   "Swollen lymph nodes",
-			Weight: 0.478,
-		},
-		{
-			ID:     "S13",
-			Name:   "Loss of apetite",
-			Weight: 0.488,
-		},
-	}
-
-	return symptoms
 }
