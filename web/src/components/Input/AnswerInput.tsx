@@ -27,7 +27,7 @@ const AnswerInput = ({ state, setState, title }: Props) => {
     <FormControl as="fieldset">
       <FormLabel as="legend">{title}</FormLabel>
 
-      <SimpleGrid columns={[1, 2, 4]} spacing="10px">
+      <SimpleGrid columns={[1, 2, 2, 4]} spacing="10px">
         <Button
           colorScheme="green"
           leftIcon={state === 0 ? <AiOutlineCheck /> : undefined}
