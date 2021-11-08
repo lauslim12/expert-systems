@@ -25,7 +25,9 @@ const AnswerInput = ({ state, setState, title }: Props) => {
 
   return (
     <FormControl as="fieldset">
-      <FormLabel as="legend">{title}</FormLabel>
+      <FormLabel as="legend" fontWeight="bold">
+        {title}
+      </FormLabel>
 
       <SimpleGrid columns={[1, 2, 2, 4]} spacing="10px">
         <Button
