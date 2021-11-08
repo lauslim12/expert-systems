@@ -14,6 +14,7 @@ import {
 } from '@chakra-ui/react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { AiFillLike } from 'react-icons/ai';
 
 /**
  * Accepts ChakraUI's modal props.
@@ -55,13 +56,63 @@ const AboutModal = ({ isOpen, onClose }: Props) => {
             </Alert>
 
             <VStack as="section" align="start" spacing={4}>
-              <Text>{t('about.content')}</Text>
+              <VStack align="start">
+                <Text fontSize="lg" fontWeight="bold">
+                  {t('about.purpose')}
+                </Text>
+
+                <Text>{t('about.content')}</Text>
+              </VStack>
+
+              <VStack align="start">
+                <Text fontSize="lg" fontWeight="bold">
+                  {t('about.dataProcessing')}
+                </Text>
+
+                <Text>{t('about.dataProcessingExplanation')}</Text>
+              </VStack>
+
+              <VStack align="start">
+                <Text fontSize="lg" fontWeight="bold">
+                  {t('about.algorithmOne')}
+                </Text>
+
+                <Text>{t('about.algorithmOneExplanation')}</Text>
+              </VStack>
+
+              <VStack align="start">
+                <Text fontSize="lg" fontWeight="bold">
+                  {t('about.algorithmTwo')}
+                </Text>
+
+                <Text>{t('about.algorithmTwoExplanation')}</Text>
+              </VStack>
+
+              <VStack align="start">
+                <Text fontSize="lg" fontWeight="bold">
+                  {t('about.process')}
+                </Text>
+
+                <Text>{t('about.inferenceProcess')}</Text>
+              </VStack>
+
+              <VStack align="start">
+                <Text fontSize="lg" fontWeight="bold">
+                  {t('about.references')}
+                </Text>
+
+                <Text>{t('about.referencesAndSource')}</Text>
+              </VStack>
             </VStack>
           </VStack>
         </ModalBody>
 
         <ModalFooter>
-          <Button colorScheme="green" onClick={onClose}>
+          <Button
+            leftIcon={<AiFillLike />}
+            colorScheme="green"
+            onClick={onClose}
+          >
             {t('about.close')}
           </Button>
         </ModalFooter>

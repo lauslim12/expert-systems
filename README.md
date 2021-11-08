@@ -10,9 +10,11 @@ This research is still in progress and not completed yet.
 - Usage of Certainty Factor and Forward Chaining algorithms in order to infer results.
 - Responsive web design with complete `a11y` support with React and TypeScript.
 - Built with performance in mind and deployed natively on a Cloud Platform.
+- Codebase is fully formatted, linted, and documented with either JSDoc or Godoc.
 - Fully unit-tested with 100% code coverage.
 - Supports `i18n`, with `en` and `id` as the internationalized languages.
-- Simple, intuitive UI for a good user experience (includes 404 page and dark mode).
+- Simple, intuitive UI for a good user experience with ChakraUI and Ant Design.
+- App includes 404 page and dark mode support.
 
 ## Requirements
 

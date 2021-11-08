@@ -1,8 +1,9 @@
-import { Flex, VStack } from '@chakra-ui/react';
+import { Flex, Heading, Text, VStack } from '@chakra-ui/react';
 import { lazy, memo, Suspense, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import Footer from '../components/Footer';
+import Header from '../components/Header';
 import DisclaimerModal from '../components/Modal/DisclaimerModal';
 import Tuberculosis from '../components/Tuberculosis';
 
@@ -33,18 +34,26 @@ const Home = () => {
       </Suspense>
 
       <Flex h="100vh" direction="column" maxW="1200px" mx="auto">
+        <Header
+          setOpenDisclaimer={() => setOpenDisclaimer(true)}
+          setOpenAbout={() => setOpenAbout(true)}
+        />
+
         <VStack as="main" p={3} spacing={5} flex={1} mt={5} mb={5}>
-          <VStack as="header" w="full">
-            <p>{t('heading.title')}</p>
+          <VStack as="header" w="full" textAlign="center">
+            <Heading size="lg" as="h1">
+              {t('heading.title')}
+            </Heading>
+
+            <Text size="md" as="h2" textAlign={['left', 'center']}>
+              {t('heading.subtitle')}
+            </Text>
           </VStack>
 
           <Tuberculosis />
         </VStack>
 
-        <Footer
-          setOpenDisclaimer={() => setOpenDisclaimer(true)}
-          setOpenAbout={() => setOpenAbout(true)}
-        />
+        <Footer />
       </Flex>
     </>
   );

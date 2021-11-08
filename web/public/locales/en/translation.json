@@ -1,6 +1,7 @@
 {
   "heading": {
-    "title": "Hello, Expert Systems!"
+    "title": "Expert System — Diagnose Tuberculosis Disease!",
+    "subtitle": "This is an application that is used in order to diagnose Tuberculosis Disease. We have implemented both Forward Chaining and Certainty Factor algorithms. Please answer the questions below!"
   },
   "general": {
     "darken": "Darken",
@@ -8,6 +9,13 @@
     "analyze": "Analyze answers",
     "results": "Results",
     "notComplete": "Please fill all information before continuing!"
+  },
+  "tooltips": {
+    "color": "Change color mode",
+    "github": "Access GitHub",
+    "about": "About the system",
+    "terms": "Terms and conditions",
+    "lang": "Change language"
   },
   "notFound": {
     "title": "Not Found!",
@@ -49,9 +57,20 @@
   },
   "about": {
     "title": "About",
-    "alert": "About the app",
-    "content": "Pre-memory",
-    "close": "Okay!"
+    "alert": "About the app—in non technical terms",
+    "purpose": "Purpose",
+    "content": "This application is developed in order to diagnose people who may be possibly be infected with TB. Using a technical concept called 'Expert System', it is possible to diagnose those people based on a number of quantitative symptoms. These symptoms will be processed by algorithms in order to produce a predictive analysis and a verdict whether that someone is infected with TB or not. The research's algorithms used in this research are Forward Chaining and Certainty Factor. All of the concepts are explained in this modal.",
+    "dataProcessing": "Data Processing",
+    "dataProcessingExplanation": "Before proceeding with the calculations, it is necessary to perform data processing first, so we can know how exactly the symptoms would be weighed quantitatively. We use a dataset called 'TB Symptoms' from Kaggle. We processed the data further by calculating the average number of occurences of each symptom that is available. Logically, we can use each of the symptom's average number in order to make that as a 'quantitative weight' to be used in further calculations. Furthermore, we also calculated the average of each patient's number of symptoms in order to know the average number of symptoms that a normal person usually have when they are infected with TB.",
+    "algorithmOne": "Forward Chaining",
+    "algorithmOneExplanation": "Forward Chaining is an algorithm in which inference rules are applied to existing data to extract additional information until a goal is reached. Basically, Forward Chaining can be fulfilled with the help of AND, OR, NOR, and many other boolean math expressions. The process uses a top-down approach, starts from an initial state and uses facts to make a conclusion, and is usually employed in Expert Systems or any other production rule systems. In this application, the average number of symptoms that are usually had by people who had TB will be used as the constant. If a number of symptoms exceeds that constant, then it is probably TB.",
+    "algorithmTwo": "Certainty Factor",
+    "algorithmTwoExplanation": "Certainty Factor is an algorithm that is an alternative of Bayesian Reasoning when reliable statistical information is not available or the independence of evidence cannot be assumed - and introduces a certainty factors calculus based on the human expert heuristics. The weights described above are used as the base calculation weights for this algorithm calculation. Certainty Factors are usually divided into two: a user's certainty level, and an expert's certainty level. Both of them are used in this application in order to provide a through calculation.",
+    "process": "Application Process",
+    "inferenceProcess": "Basically, you submit your symptoms → this application will try to make a reasoning and will try to infer about your condition → you receive your inference results → you're done and free to consult about the results to a medical expert. If you wish to take a look deeper down the calculations, the source code is always open.",
+    "references": "Bibliography",
+    "referencesAndSource": "All references, acknowledgements, and more through documentation could be seen in this application's GitHub repository. Credits goes to all of them for helping to build this research project and providing a research to base this research on!",
+    "close": "OK!"
   },
   "inference": {
     "title": "Inference Result",
@@ -78,9 +97,5 @@
     "hideCode": "Hide raw data",
     "close": "Close"
   },
-  "footer": {
-    "github": "GitHub",
-    "about": "About",
-    "terms": "Terms"
-  }
+  "footer": "This application is the result of the work by the creators."
 }

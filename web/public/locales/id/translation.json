@@ -1,6 +1,7 @@
 {
   "heading": {
-    "title": "Halo, Expert Systems!"
+    "title": "Sistem Pakar — Diagnosis Tuberkulosis!",
+    "subtitle": "Aplikasi ini digunakan untuk mendiagnosis penyakit Tuberkulosis. Kami telah mengimplementasikan algoritma Forward Chaining dan Certainty Factor. Mohon menjawab pertanyaan di bawah ini!"
   },
   "general": {
     "darken": "Gelapkan",
@@ -8,6 +9,13 @@
     "analyze": "Analisis jawaban",
     "results": "Hasil",
     "notComplete": "Mohon isi seluruh informasi terlebih dahulu!"
+  },
+  "tooltips": {
+    "color": "Ubah mode warna",
+    "github": "Akses GitHub",
+    "about": "Tentang sistem",
+    "terms": "Syarat dan ketentuan",
+    "lang": "Ubah bahasa"
   },
   "notFound": {
     "title": "Tidak ditemukan!",
@@ -49,9 +57,20 @@
   },
   "about": {
     "title": "Tentang",
-    "alert": "Tentang aplikasi",
-    "content": "Pre-memory",
-    "close": "Oke!"
+    "alert": "Tentang aplikasi—dalam bahasa non-teknis",
+    "purpose": "Kegunaan",
+    "content": "Aplikasi ini dibangun untuk mendiagnosis orang yang memiliki kemungkinan terinfeksi oleh TB. Dengan konsep teknis yang dinamai 'Sistem Pakar', dimungkinkan bagi seseorang untuk mendiagnosis orang berdasarkan gejala-gejala yang dikuantitatifkan. Gejala-gejala ini akan diproses dengan algoritma untuk menghasilkan sebuah analisis prediksi dan keputusan apakah seseorang terinfeksi dengan TB atau tidak. Algoritme yang digunakan dalam penelitian ini adalah Forward Chaining dan Certainty Factor, yang mana seluruh konsepnya akan dijelaskan dalam tampilan modal ini.",
+    "dataProcessing": "Pemrosesan Data",
+    "dataProcessingExplanation": "Sebelum melanjutkan dengan kalkulasi, sangat penting untuk menerapkan pemrosesan data terlebih dahulu, agar bisa mengetahui bagaimana cara meng-'kuantitatif'-kan gejala tersebut. Dataset yang digunakan dalam penelitian ini adalah 'TB Symptoms' dari Kaggle. Data diproses lebih lanjut dengan mengalkulasikan rata-rata jumlah gejala yang muncul untuk masing-masing gejala. Secara logis, angka ini dapat digunakan sebagai konstanta yang kuantitatif untuk kalkulasi berikutnya. Lebih lanjut, juga dilakukan kalkulasi rata-rata gejala yang dialami pasien untuk mengetahui jumlah rata-rata gejala yang seseorang biasanya memiliki ketika mereka terinfeksi dengan TB.",
+    "algorithmOne": "Forward Chaining",
+    "algorithmOneExplanation": "Forward Chaining adalah algoritma dimana peraturan inferensi diimplementasikan kepada data yang sudah ada untuk mengekstrak informasi tambahan hingga tujuan tercapai. Umumnya, algoritma ini dapat diselesaikan dengan bantuan AND, OR, NOR, dan ekspresi matematika diskrit/boolean lainnya. Proses dari algoritma ini mengedepankan top-down approach, memulai dari sebuah initial state dan menggunakan fakta-fakta untuk mendapatkan kesimpulan, dan biasanya algoritma ini diimplementasikan pada Sistem Pakar. Dalam aplikasi ini, rata-rata jumlah gejala yang biasanya dimiliki oleh orang yang menderita TB akan digunakan sebagai konstanta. Apabila angka gejala melebihi konstanta tersebut, maka kemungkinan terinfeksi TB.",
+    "algorithmTwo": "Certainty Factor",
+    "algorithmTwoExplanation": "Certainty Factor adalah sebuah algoritma yang merupakan alternatif dari Bayesian Reasoning ketika tidak ada informasi statistik yang reliabel atau bukti yang konkret tidak dapat diasumsikan - dan membawa kalkulus tingkat kepercayaan / certainty factors yang didasarkan pada pakar. Konstanta rata-rata jumlah gejala (yang dijelaskan di atas) tersebut digunakan sebagai konstanta dasar untuk perhitungan algoritme ini. Certainty Factors atau tingkat kepercayaan biasanya dibagi menjadi dua; yakni tingkat kepercayaan pengguna, dan tingkat kepercayaan pakar. Keduanya digunakan dalam aplikasi ini untuk mendapatkan hasil yang mendalam.",
+    "process": "Proses Aplikasi",
+    "inferenceProcess": "Anda mengumpulkan gejala → aplikasi akan mencoba membuat keputusan tentang kondisi Anda → Anda mendapatkan hasil → Anda selesai dan boleh berkonsultasi kepada tenaga kesehatan untuk kondisi pribadi Anda. Apabila Anda ingin melihat kalkulasi lebih dalam, Anda dapat melihat kode sumber dari aplikasi.",
+    "references": "Daftar Pustaka",
+    "referencesAndSource": "Seluruh referensi, pengakuan, dan dokumentasi yang lebih lengkap dapat dilihat pada repositori GitHub aplikasi ini. Terima kasih kepada mereka yang telah membantu untuk membangun penelitian ini dan menyediakan penelitian terdahulu sebagai landasan penelitian!",
+    "close": "OK!"
   },
   "inference": {
     "title": "Hasil Inferensi",
@@ -78,9 +97,5 @@
     "hideCode": "Sembunyikan data",
     "close": "Tutup"
   },
-  "footer": {
-    "github": "GitHub",
-    "about": "Tentang",
-    "terms": "Kebijakan"
-  }
+  "footer": "Aplikasi ES ini merupakan hasil karya dari para pembuat."
 }
