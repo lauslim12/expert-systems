@@ -1,4 +1,4 @@
-import { HStack, StackDivider, Text } from '@chakra-ui/react';
+import { HStack, Text } from '@chakra-ui/react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -12,13 +12,7 @@ const Footer = () => {
   const { t } = useTranslation();
 
   return (
-    <HStack
-      as="footer"
-      fontSize="xs"
-      divider={<StackDivider orientation="vertical" />}
-      justify="center"
-      p={2}
-    >
+    <HStack as="footer" fontSize="xs" justify="center" p={2}>
       <Text>{t('footer')}</Text>
     </HStack>
   );
