@@ -13,7 +13,8 @@ This research is still in progress and not completed yet.
 - Codebase is fully formatted, linted, and documented with either JSDoc or Godoc.
 - Fully unit-tested with 100% code coverage.
 - Supports `i18n`, with `en` and `id` as the internationalized languages.
-- Simple, intuitive UI for a good user experience (includes 404 page and dark mode).
+- Simple, intuitive UI for a good user experience with ChakraUI and Ant Design.
+- App includes 404 page and dark mode support.
 
 ## Requirements
 
