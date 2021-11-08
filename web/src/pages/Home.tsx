@@ -53,10 +53,7 @@ const Home = () => {
           <Tuberculosis />
         </VStack>
 
-        <Footer
-          setOpenDisclaimer={() => setOpenDisclaimer(true)}
-          setOpenAbout={() => setOpenAbout(true)}
-        />
+        <Footer />
       </Flex>
     </>
   );

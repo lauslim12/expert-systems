@@ -97,9 +97,5 @@
     "hideCode": "Hide raw data",
     "close": "Close"
   },
-  "footer": {
-    "github": "GitHub",
-    "about": "About",
-    "terms": "Terms"
-  }
+  "footer": "This application is the result of the work by the creators."
 }

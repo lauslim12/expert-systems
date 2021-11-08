@@ -97,9 +97,5 @@
     "hideCode": "Sembunyikan data",
     "close": "Tutup"
   },
-  "footer": {
-    "github": "GitHub",
-    "about": "Tentang",
-    "terms": "Kebijakan"
-  }
+  "footer": "Aplikasi ES ini merupakan hasil karya dari para pembuat."
 }
