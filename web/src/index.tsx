@@ -8,17 +8,39 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+/**
+ * Fallback fonts.
+ */
+const fallbackFonts =
+  '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"';
+
+/**
+ * Renders whole application.
+ */
 ReactDOM.render(
   <React.StrictMode>
     <ChakraProvider
       resetCSS
       theme={extendTheme({
+        styles: {
+          global: {
+            '::selection': {
+              backgroundColor: '#FBB6CE',
+              color: '#000',
+            },
+          },
+        },
+        fonts: {
+          body: `Karla, ${fallbackFonts}`,
+          heading: `Karla, ${fallbackFonts}`,
+        },
         config: {
           useSystemColorMode: 'true',
         },
       })}
     >
       <ColorModeScript initialColorMode="system" />
+
       <App />
     </ChakraProvider>
   </React.StrictMode>,
