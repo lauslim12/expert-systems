@@ -1,5 +1,5 @@
 # First stage: Go process.
-FROM golang:1.16.6 AS api
+FROM golang:1.17.2 AS api
 
 # Set working directory.
 WORKDIR /backend-compile
@@ -17,7 +17,7 @@ COPY . ./
 RUN CGO_ENABLED=0 GOOS=linux go build -o expert-systems ./cmd/expert-systems/main.go
 
 # Get Node image from DockerHub.
-FROM node:16.6.2 AS web
+FROM node:16.3.0 AS web
 
 # Set working directory.
 WORKDIR /frontend-compile
