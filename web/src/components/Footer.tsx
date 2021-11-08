@@ -61,7 +61,7 @@ const Footer = ({ setOpenDisclaimer, setOpenAbout }: Props) => {
           i18n.changeLanguage('id');
         }}
       >
-        Lang
+        {i18n.language === 'en' ? 'Language' : 'Bahasa'}
       </Text>
     </HStack>
   );
