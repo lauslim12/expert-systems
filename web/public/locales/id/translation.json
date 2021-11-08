@@ -1,6 +1,7 @@
 {
   "heading": {
-    "title": "Halo, Expert Systems!"
+    "title": "Sistem Pakar — Diagnosis Tuberkulosis!",
+    "subtitle": "Aplikasi ini digunakan untuk mendiagnosis penyakit Tuberkulosis. Kami telah mengimplementasikan algoritma Forward Chaining dan Certainty Factor. Mohon menjawab pertanyaan di bawah ini!"
   },
   "general": {
     "darken": "Gelapkan",

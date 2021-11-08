@@ -1,6 +1,7 @@
 {
   "heading": {
-    "title": "Hello, Expert Systems!"
+    "title": "Expert System — Diagnose Tuberculosis Disease!",
+    "subtitle": "This is an application that is used in order to diagnose Tuberculosis Disease. We have implemented both Forward Chaining and Certainty Factor algorithms. Please answer the questions below!"
   },
   "general": {
     "darken": "Darken",

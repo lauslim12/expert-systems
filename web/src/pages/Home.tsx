@@ -1,4 +1,4 @@
-import { Flex, VStack } from '@chakra-ui/react';
+import { Flex, Heading, Text, VStack } from '@chakra-ui/react';
 import { lazy, memo, Suspense, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -34,8 +34,14 @@ const Home = () => {
 
       <Flex h="100vh" direction="column" maxW="1200px" mx="auto">
         <VStack as="main" p={3} spacing={5} flex={1} mt={5} mb={5}>
-          <VStack as="header" w="full">
-            <p>{t('heading.title')}</p>
+          <VStack as="header" w="full" textAlign="center">
+            <Heading size="lg" as="h1">
+              {t('heading.title')}
+            </Heading>
+
+            <Text size="md" as="h2" textAlign={['left', 'center']}>
+              {t('heading.subtitle')}
+            </Text>
           </VStack>
 
           <Tuberculosis />
