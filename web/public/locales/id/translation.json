@@ -10,6 +10,13 @@
     "results": "Hasil",
     "notComplete": "Mohon isi seluruh informasi terlebih dahulu!"
   },
+  "tooltips": {
+    "color": "Ubah mode warna",
+    "github": "Akses GitHub",
+    "about": "Tentang sistem",
+    "terms": "Syarat dan ketentuan",
+    "lang": "Ubah bahasa"
+  },
   "notFound": {
     "title": "Tidak ditemukan!",
     "message": "Halaman yang Anda cari mungkin (tidak) ada di masa lampau, tetapi sekarang sudah pasti tidak ada.",

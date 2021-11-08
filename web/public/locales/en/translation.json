@@ -10,6 +10,13 @@
     "results": "Results",
     "notComplete": "Please fill all information before continuing!"
   },
+  "tooltips": {
+    "color": "Change color mode",
+    "github": "Access GitHub",
+    "about": "About the system",
+    "terms": "Terms and conditions",
+    "lang": "Change language"
+  },
   "notFound": {
     "title": "Not Found!",
     "message": "The page you are looking for may or may not have existed in the past, but it certainly doesn't anymore.",
