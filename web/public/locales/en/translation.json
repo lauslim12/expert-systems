@@ -1,7 +1,7 @@
 {
   "heading": {
     "title": "Expert System — Diagnose Tuberculosis Disease!",
-    "subtitle": "This is an application that is used in order to diagnose Tuberculosis Disease. We have implemented both Forward Chaining and Certainty Factor algorithms. Please answer the questions below!"
+    "subtitle": "This is an application that is used in order to diagnose Tuberculosis Disease (focuses on TB for lungs). We have implemented both Forward Chaining and Certainty Factor algorithms. Please answer the questions below!"
   },
   "general": {
     "darken": "Darken",
@@ -28,7 +28,7 @@
     "symptomThree": "My sputum is mixed with blood",
     "symptomFour": "I sweat at night",
     "symptomFive": "I suffer from chest pain constantly",
-    "symptomSix": "I suffer from back pain constantly",
+    "symptomSix": "I suffer from pain when breathing (pleuritic pain)",
     "symptomSeven": "I feel a shortness of breath",
     "symptomEight": "I have experienced weight loss",
     "symptomNine": "My body feels like always tired",
