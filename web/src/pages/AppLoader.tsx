@@ -8,12 +8,7 @@ import { memo } from 'react';
  */
 const AppLoader = () => (
   <VStack w="100vw" h="100vh" align="center" justify="center">
-    <Spinner
-      size="xl"
-      thickness="5px"
-      emptyColor="gray.200"
-      color="twitter.300"
-    />
+    <Spinner size="xl" thickness="5px" emptyColor="gray.200" color="pink.400" />
 
     <Text textAlign="center">Loading localizations...</Text>
   </VStack>
