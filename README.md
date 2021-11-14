@@ -1,6 +1,6 @@
 # Expert Systems
 
-Expert Systems Research (diagnosis of Tuberculosis with Forward Chaining and Certainty Factor) with a touch of Software Engineering with Go and React. Licensed under MIT License, and in progress to be submitted in an academic journal.
+Expert Systems Research (diagnosis of Tuberculosis, focuses on TB for lungs, with Forward Chaining and Certainty Factor) with a touch of Software Engineering with Go and React. Licensed under MIT License, and in progress to be submitted in an academic journal.
 
 This research is still in progress and not completed yet.
 
