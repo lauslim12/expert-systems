@@ -132,9 +132,17 @@ docker image rm expert-systems:latest
 
 This application is open sourced under MIT License.
 
-## References
+## Acknowledgements
 
 We would like to acknowledge these sources of helpful information for they have helped us during the research process.
+
+- Doctor Maria from Halodoc who had reviewed this application
+- Doctor Devi from Halodoc who had reviewed this application
+- Other testers who had tested and reviewed this application
+
+## References
+
+Bibliography of our research.
 
 - [Victor Caelina for the TB Symptoms Dataset](https://www.kaggle.com/victorcaelina/tuberculosis-symptoms)
 - [Icons8.com for the Hospital Favicon](https://icons8.com/)
