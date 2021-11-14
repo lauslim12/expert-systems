@@ -1,7 +1,7 @@
 {
   "heading": {
     "title": "Sistem Pakar — Diagnosis Tuberkulosis!",
-    "subtitle": "Aplikasi ini digunakan untuk mendiagnosis penyakit Tuberkulosis. Kami telah mengimplementasikan algoritma Forward Chaining dan Certainty Factor. Mohon menjawab pertanyaan di bawah ini!"
+    "subtitle": "Aplikasi ini digunakan untuk mendiagnosis penyakit Tuberkulosis (fokus pada TB paru). Kami telah mengimplementasikan algoritma Forward Chaining dan Certainty Factor. Mohon menjawab pertanyaan di bawah ini!"
   },
   "general": {
     "darken": "Gelapkan",
@@ -28,7 +28,7 @@
     "symptomThree": "Lendir saya bercampur dengan darah",
     "symptomFour": "Saya berkeringat pada malam hari",
     "symptomFive": "Saya menderita sakit dada secara kontinyu",
-    "symptomSix": "Saya menderita sakit punggung secara kontinyu",
+    "symptomSix": "Saya merasa sakit saat bernafas",
     "symptomSeven": "Saya merasa sulit bernafas",
     "symptomEight": "Saya mengalami penurunan berat badan",
     "symptomNine": "Badan saya selalu terasa lelah",

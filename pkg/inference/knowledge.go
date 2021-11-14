@@ -83,7 +83,7 @@ func getDiseases(locale string) []Disease {
 				},
 				{
 					ID:     "S6",
-					Name:   "Back pain in certain parts",
+					Name:   "Pleuritic pain",
 					Weight: 0.511,
 				},
 				{
