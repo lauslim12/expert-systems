@@ -69,6 +69,7 @@ const DisclaimerModal = ({ isOpen, onClose }: Props) => {
               <Checkbox
                 colorScheme="green"
                 isChecked={isAgreeWithTerms}
+                isRequired
                 onChange={({ target: { checked } }) =>
                   setIsAgreeWithTerms(checked)
                 }
@@ -79,6 +80,7 @@ const DisclaimerModal = ({ isOpen, onClose }: Props) => {
               <Checkbox
                 colorScheme="green"
                 isChecked={isResponsible}
+                isRequired
                 onChange={({ target: { checked } }) =>
                   setIsResponsible(checked)
                 }

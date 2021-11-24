@@ -19,7 +19,7 @@ const AboutModal = lazy(() => import('../components/Modal/AboutModal'));
  */
 const Home = () => {
   const [openAbout, setOpenAbout] = useState(false);
-  const [openDisclaimer, setOpenDisclaimer] = useState(false);
+  const [openDisclaimer, setOpenDisclaimer] = useState(true);
   const { t } = useTranslation();
 
   return (
