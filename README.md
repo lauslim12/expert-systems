@@ -1,8 +1,14 @@
 # Expert Systems
 
-Expert Systems Research (diagnosis of Tuberculosis, focuses on TB for lungs, with Forward Chaining and Certainty Factor) with a touch of Software Engineering with Go and React. Licensed under MIT License, and in progress to be submitted in an academic journal.
+Expert Systems API Research (diagnosis of Tuberculosis, focuses on TB for lungs, with Forward Chaining and Certainty Factor) with a touch of Software Engineering with Go and React.
 
-This research is still in progress and not completed yet.
+This research has been completed and is now in progress to be submitted in an academic journal.
+
+## Abstract
+
+Tuberculosis is a disease that is often overlooked by medical personnel and is difficult to diagnose when it is at its early stage. The disease itself is treatable and there are indeed early detection tools, but one of the challenges for the early detection tools is its price. As with all other diseases, it is important to make early detection tools that are easy to use, accurate, and can be used by people from various backgrounds and environments. Early detection tools with said characteristics will be able to help contribute in eradicating Tuberculosis from the world. This research will focus on development of an Expert System with a REST API based architecture to diagnose Tuberculosis based on the available symptoms. The API is built so the system could scale, achieve more separation of concerns, and be portable. The Expert System will implement Forward Chaining and Certainty Factor algorithms in order to provide a more in-depth diagnosis. The user interface of the system is developed as a web application with several features, one of which is internationalization, and the languages that are used are English and Bahasa Indonesia. The evaluation of this research is carried out with unit tests, integration tests, interviews with general users, and in-depth interviews with medical experts. We received a satisfactory result, where most respondents claimed that the system is easy to use, informative, accurate, helpful, and they consider using this system to diagnose themselves in the future.
+
+**Keywords**: API, Web Application, Internationalization, Expert System, Tuberculosis
 
 ## Features
 
@@ -130,19 +136,20 @@ docker image rm expert-systems:latest
 
 ## License
 
-This application is open sourced under MIT License.
+This application is open sourced under MIT License. The research paper itself will follow the license of the publisher after it has been published.
 
 ## Acknowledgements
 
 We would like to acknowledge these sources of helpful information for they have helped us during the research process.
 
-- Doctor Maria from Halodoc who had reviewed this application
-- Doctor Devi from Halodoc who had reviewed this application
-- Other testers who had tested and reviewed this application
+- Doctor Maria from Halodoc who had reviewed this application.
+- Doctor Devi from Halodoc who had reviewed this application.
+- Segun Adebayo for ChakraUI.
+- Peter Kieltyka for Chi web framework.
+- Kamijin Fanta for React Icons.
+- i18next for the internationalization library.
+- All testers of the system, who have spent their time evaluating, giving feedback, and helping us to improve this system to be a better one.
 
 ## References
 
-Bibliography of our research.
-
-- [Victor Caelina for the TB Symptoms Dataset](https://www.kaggle.com/victorcaelina/tuberculosis-symptoms)
-- [Icons8.com for the Hospital Favicon](https://icons8.com/)
+The bibliography of our research can be seen in our research paper after it has been published.
