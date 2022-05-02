@@ -45,7 +45,7 @@ func TestGeneralHandler(t *testing.T) {
 			method:         http.MethodPost,
 			input:          "",
 			route:          "/api/v1",
-			expectedStatus: http.StatusUnsupportedMediaType,
+			expectedStatus: http.StatusBadRequest,
 		},
 	}
 
