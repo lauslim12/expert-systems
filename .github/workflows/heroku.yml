@@ -13,13 +13,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Build Docker image, push to Heroku, and deploy on Heroku
-        uses: akhileshns/heroku-deploy@v3.12.12
+      - name: Build Docker image, then push and deploy to Heroku
+        uses: gonuit/heroku-docker-deploy@v1.3.3
         with:
+          email: ${{ secrets.HEROKU_EMAIL }}
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
           heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
-          heroku_email: ${{ secrets.HEROKU_EMAIL }}
-          usedocker: true
-          docker_build_args: GO_ENV
-        env:
-          GO_ENV: production
+          dockerfile_directory: ./
+          dockerfile_name: Dockerfile
+          docker_options: "--build-arg GO_ENV=production"
+          process_type: web
