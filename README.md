@@ -25,10 +25,14 @@ Tuberculosis is a disease that is often overlooked by medical personnel and is d
 ## Requirements
 
 - [Docker](https://www.docker.com/) (if you want to containerize)
-- [Go 1.17+](https://golang.org/)
+- [Go 1.18+](https://golang.org/)
 - [Node.js 16+](https://nodejs.org/en/)
 - [Yarn 1.22+](https://yarnpkg.com/)
 - Shell that supports `curl`, `make`, and `sh`. WSL / Ubuntu / OS X should be able to do this without much configuration (Bash version 3.0+).
+
+## Codespaces
+
+This repository supports GitHub Codespaces with a dedicated `.devcontainer`. You can create a Codespace based on the provided template if you want to get this application up and running as soon as possible. If you are going with this approach, after summoning the Codespace, you need to spawn two terminals: one to run `make start`, and the other to run `cd web` and then `yarn start`. You can see the result in the port-forwarded URL.
 
 ## Installation (Development)
 
