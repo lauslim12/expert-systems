@@ -1,5 +1,5 @@
 # First stage: Go process.
-FROM golang:1.18.1 AS api
+FROM golang:1.18.2 AS api
 
 # Set working directory.
 WORKDIR /backend-compile
