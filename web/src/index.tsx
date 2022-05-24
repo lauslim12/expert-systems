@@ -1,9 +1,14 @@
 import 'focus-visible/dist/focus-visible';
 import './utils/i18n';
 
-import { ChakraProvider, ColorModeScript, extendTheme } from '@chakra-ui/react';
+import {
+  type ThemeOverride,
+  ChakraProvider,
+  ColorModeScript,
+  extendTheme,
+} from '@chakra-ui/react';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -15,9 +20,9 @@ const fallbackFonts =
   '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"';
 
 /**
- * Renders whole application.
+ * Renders whole application in React 18.
  */
-ReactDOM.render(
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <ChakraProvider
       resetCSS
@@ -35,16 +40,16 @@ ReactDOM.render(
           heading: `Karla, ${fallbackFonts}`,
         },
         config: {
-          useSystemColorMode: 'true',
+          initialColorMode: 'system',
+          useSystemColorMode: true,
+          disableTransitionOnChange: false,
         },
-      })}
+      } as ThemeOverride)}
     >
       <ColorModeScript initialColorMode="system" />
-
       <App />
     </ChakraProvider>
-  </React.StrictMode>,
-  document.getElementById('root')
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
