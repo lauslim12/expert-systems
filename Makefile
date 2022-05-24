@@ -12,7 +12,7 @@ format:
 
 .PHONY: test
 test:
-	go test -v -cover ./... ./...
+	go test -v -race -cover ./... ./...
 
 .PHONY: e2e
 e2e:
