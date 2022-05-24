@@ -5,7 +5,7 @@ on:
     branches: [main]
 
 jobs:
-  go-ci:
+  go:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -21,6 +21,12 @@ jobs:
         with:
           go-version: ${{ env.GO_VERSION }}
 
+      - name: Verify dependencies
+        run: go mod verify
+
+      - name: Examine source code for any suspicious, abnormal, or unused code
+        run: go vet ./...
+
       - name: Format Go application
         run: make format
 
@@ -30,7 +36,7 @@ jobs:
       - name: Build Go application
         run: make build
 
-  react-ci:
+  react:
     runs-on: ubuntu-latest
 
     defaults:

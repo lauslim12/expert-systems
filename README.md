@@ -1,14 +1,14 @@
 # Expert Systems
 
-Expert Systems API Research (diagnosis of Tuberculosis, focuses on TB for lungs, with Forward Chaining and Certainty Factor) with a touch of Software Engineering with Go and React.
+Expert System Research (diagnosis of Tuberculosis, focuses on TB for lungs, with Forward Chaining and Certainty Factor algorithm) in the form of an Application Programming Interface (API) with a touch of Software Engineering with Go and React.
 
-This research has been completed and is now in progress to be submitted in an academic journal.
+This research has been completed and is now in progress to be submitted in an academic journal. This documentation will be updated with the bits and pieces of the research after it has been submitted properly and published.
 
 ## Abstract
 
-Tuberculosis is a disease that is often overlooked by medical personnel and is difficult to diagnose when it is at its early stage. The disease itself is treatable and there are indeed early detection tools, but one of the challenges for the early detection tools is its price. As with all other diseases, it is important to make early detection tools that are easy to use, accurate, and can be used by people from various backgrounds and environments. Early detection tools with said characteristics will be able to help contribute in eradicating Tuberculosis from the world. This research will focus on development of an Expert System with a REST API based architecture to diagnose Tuberculosis based on the available symptoms. The API is built so the system could scale, achieve more separation of concerns, and be portable. The Expert System will implement Forward Chaining and Certainty Factor algorithms in order to provide a more in-depth diagnosis. The user interface of the system is developed as a web application with several features, one of which is internationalization, and the languages that are used are English and Bahasa Indonesia. The evaluation of this research is carried out with unit tests, integration tests, interviews with general users, and in-depth interviews with medical experts. We received a satisfactory result, where most respondents claimed that the system is easy to use, informative, accurate, helpful, and they consider using this system to diagnose themselves in the future.
+Despite being a curable disease, Tuberculosis has become the leading cause of death of infectious disease prior to COVID-19. It has asymptomatic infections that are hard to detect for weeks or years. Although there have been many studies on Tuberculosis disease detection and prevention, very few of them discuss the creation of an expert system based on API. Hence, in this study we propose an Expert API that implements Forward Chaining and Certainty Factor algorithms for the task of Tuberculosis early detection. The evaluation of the proposed system was carried out using several testing methods and in-depth interviews with medical experts. We got a satisfactory result for this study.
 
-**Keywords**: API, Web Application, Internationalization, Expert System, Tuberculosis
+**Keywords**: Certainty Factor, Expert System, Forward Chaining, REST API, Tuberculosis.
 
 ## Features
 
@@ -17,7 +17,7 @@ Tuberculosis is a disease that is often overlooked by medical personnel and is d
 - Responsive web design with complete `a11y` support with React and TypeScript.
 - Built with performance in mind and deployed natively on a Cloud Platform.
 - Codebase is fully formatted, linted, and documented with either JSDoc or Godoc.
-- Fully unit-tested with 100% code coverage.
+- Fully unit-tested API with 100% code coverage.
 - Supports `i18n`, with `en` and `id` as the internationalized languages.
 - Simple, intuitive UI for a good user experience with ChakraUI and Ant Design.
 - App includes 404 page and dark mode support.
@@ -30,9 +30,11 @@ Tuberculosis is a disease that is often overlooked by medical personnel and is d
 - [Yarn 1.22+](https://yarnpkg.com/)
 - Shell that supports `curl`, `make`, and `sh`. WSL / Ubuntu / OS X should be able to do this without much configuration (Bash version 3.0+).
 
-## Codespaces
+Note: The tech stack may or may not be upgraded as time progresses (for example, from Node.js 16 to Node.js 18, or from React 18 to React 19 in the future).
 
-This repository supports GitHub Codespaces with a dedicated `.devcontainer`. You can create a Codespace based on the provided template if you want to get this application up and running as soon as possible. If you are going with this approach, after summoning the Codespace, you need to spawn two terminals: one to run `make start`, and the other to run `cd web` and then `yarn start`. You can see the result in the port-forwarded URL.
+## GitHub Codespaces
+
+This repository supports GitHub Codespaces with a dedicated `.devcontainer`. You can create a Codespace based on the provided template if you want to get this application up and running as soon as possible. If you are going with this approach, after summoning the Codespace, you need to spawn two terminals: one to run `make start`, and the other to run `cd web` and then `yarn start`. You can see the result in the port-forwarded URL. All dependencies and setup are done in the container creation.
 
 ## Installation (Development)
 
@@ -137,6 +139,10 @@ docker stop expert-systems
 docker rm expert-systems
 docker image rm expert-systems:latest
 ```
+
+## Deployment
+
+GitHub Actions has been set up in this repository to automatically test and deploy the production version of the application to [Heroku](https://www.heroku.com/). The Go application will serve the React frontend for simplicity, and the whole application is wrapped in a Docker container to ensure consistent builds and deployments.
 
 ## License
 
