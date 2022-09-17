@@ -2,7 +2,7 @@
 
 Expert System Research (diagnosis of Tuberculosis, focuses on TB for lungs, with Forward Chaining and Certainty Factor algorithm) in the form of an Application Programming Interface (API) with a touch of Software Engineering with Go and React.
 
-**Research Paper**: [Expert API for Early Detection of TB Disease with Forward Chaining and Certainty Factor Algorithms](https://informatica.si/index.php/informatica/article/view/3947), published in Informatica, an International Journal of Computing and Informatics, Slovenia.
+**Research Paper**: **[Expert API for Early Detection of TB Disease with Forward Chaining and Certainty Factor Algorithms (2022)](https://informatica.si/index.php/informatica/article/view/3947)**, published in Informatica, an International Journal of Computing and Informatics, Slovenia.
 
 ## Abstract
 
